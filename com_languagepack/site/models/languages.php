@@ -30,7 +30,7 @@ class LanguagepackModelLanguages extends ListModel
 		$db = $this->getDbo();
 
 		return $db->getQuery(true)
-			->select($db->quoteName('*'))
+			->select('*')
 			->from($db->quoteName('#__languagepack_languages'));
 	}
 }

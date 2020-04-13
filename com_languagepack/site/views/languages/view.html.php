@@ -23,7 +23,7 @@ class LanguagepackViewLanguages extends HtmlView
 	 *
 	 * @var  array
 	 */
-	protected $languages;
+	protected $languages = array();
 
 	/**
 	 * Execute and display a template script.
@@ -37,6 +37,12 @@ class LanguagepackViewLanguages extends HtmlView
 		/** @var \LanguagepackModelLanguages $model */
 		$model = $this->getModel();
 		$this->languages = $model->getItems();
+
+		if ($this->languages === false)
+		{
+			// TODO: Improve this get all errors and pipe them all in maybe a custom exception
+			throw new \RuntimeException($model->getError());
+		}
 
 		return parent::display($tpl);
 	}
