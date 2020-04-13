@@ -9,12 +9,28 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\MVC\Model\ListModel;
 
 /**
- * Language pack list controller class.
+ * Language pack list model class.
  *
  * @since  1.0
  */
-class LanguagepackModelLanguages extends BaseDatabaseModel
-{}
+class LanguagepackModelLanguages extends ListModel
+{
+	/**
+	 * Method to get a \JDatabaseQuery object for retrieving the data set from a database.
+	 *
+	 * @return  \JDatabaseQuery  A \JDatabaseQuery object to retrieve the data set.
+	 *
+	 * @since   1.6
+	 */
+	protected function getListQuery()
+	{
+		$db = $this->getDbo();
+
+		return $db->getQuery(true)
+			->select($db->quoteName('*'))
+			->from($db->quoteName('#__languagepack_languages'));
+	}
+}
