@@ -33,6 +33,7 @@
 		<files folder="admin">
 			<filename>config.xml</filename>
 			<folder>language</folder>
+			<folder>sql</folder>
 		</files>
 	</administration>
 </extension>
