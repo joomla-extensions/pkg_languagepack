@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" version="3.9" method="upgrade">
+	<name>pkg_languagepack</name>
+    <author>Joomla! Project</author>
+    <creationDate>April 2020</creationDate>
+    <copyright>(C) 2020 Open Source Matters. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<packagename>languagepack</packagename>
+	<version>1.0.0</version>
+	<url>http://www.joomla.org/</url>
+	<packager>Joomla! Project</packager>
+	<packagerurl>http://www.joomla.org/</packagerurl>
+	<description>Language Pack Package</description>
+	<files>
+		<file type="component" id="com_languagepack">com_languagepack.zip</file>
+	</files>
+</extension>
