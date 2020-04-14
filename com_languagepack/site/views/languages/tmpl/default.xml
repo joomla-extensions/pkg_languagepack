@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_LANGUAGE_PACK_LANGUAGES_VIEW_DEFAULT_TITLE" option="COM_LANGUAGE_PACK_LANGUAGES_VIEW_DEFAULT_OPTION">
+        <message>
+            <![CDATA[COM_LANGUAGE_PACK_LANGUAGES_VIEW_DEFAULT_DESC]]>
+        </message>
+    </layout>
+
+    <fields name="request">
+        <fieldset name="request"
+            addfieldpath="/administrator/components/com_languagepack/models/fields"
+        >
+            <field
+                name="jversion_id"
+                type="Languagepack.Joomlaversion"
+                label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
+                required="true"
+            />
+        </fieldset>
+    </fields>
+</metadata>
