@@ -15,10 +15,16 @@ use Joomla\CMS\Language\Text;
 ?>
 
 <div class="languages">
-	<?php foreach ($this->languages as $language): ?>
-	<div id="<?php echo $language->lang_code ?>">
-        <h1><?php echo Text::sprintf('COM_LANGUAGE_PACK_NAME', $language->name) ?></h1>
-        <!-- Show latest release for each of the major versions here -->
-	</div>
-	<?php endforeach; ?>
+    <h1>
+        <?php echo Text::sprintf('COM_LANGUAGE_PACK_TRANSLATIONS_AVAILABLE_IN', $this->joomlaVersion) ?>
+    </h1>
+    <?php if (!empty($this->languages)) : ?>
+    <ul>
+        <?php foreach ($this->languages as $language): ?>
+        <li id="lang-<?php echo $language->lang_code ?>">
+            <p><?php echo $language->name; ?></p>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+	<?php endif; ?>
 </div>

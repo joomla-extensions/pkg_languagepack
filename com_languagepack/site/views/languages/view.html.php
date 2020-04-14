@@ -26,6 +26,13 @@ class LanguagepackViewLanguages extends HtmlView
 	protected $languages = array();
 
 	/**
+	 * The Joomla version we are listing languages for
+	 *
+	 * @var  integer
+	 */
+	protected $joomlaVersion = array();
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -37,6 +44,10 @@ class LanguagepackViewLanguages extends HtmlView
 		/** @var \LanguagepackModelLanguages $model */
 		$model = $this->getModel();
 		$this->languages = $model->getItems();
+
+		// TODO: Make a menu type and set properly
+		$this->joomlaVersion = 4;
+		$model->setState('joomla_version', $this->joomlaVersion);
 
 		if ($this->languages === false)
 		{

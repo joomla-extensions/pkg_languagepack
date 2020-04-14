@@ -31,6 +31,7 @@ class LanguagepackModelLanguages extends ListModel
 
 		return $db->getQuery(true)
 			->select('*')
-			->from($db->quoteName('#__languagepack_languages'));
+			->from($db->quoteName('#__languagepack_languages'))
+			->where($db->quoteName('jversion_id') . ' = ' . $this->getState('joomla_version', 4));
 	}
 }
