@@ -12,26 +12,18 @@ defined('_JEXEC') or die;
 use Joomla\CMS\MVC\View\HtmlView;
 
 /**
- * HTML Contact View class for the Language pack component
+ * HTML Application View class for the Language pack component
  *
  * @since  1.0
  */
-class LanguagepackViewLanguages extends HtmlView
+class LanguagepackViewApplications extends HtmlView
 {
 	/**
 	 * List of languages
 	 *
 	 * @var  array
 	 */
-	protected $languages = array();
-
-	/**
-	 * The application we are listing languages for
-	 *
-	 * @var  integer
-	 * @TODO: Make a menu type and set properly
-	 */
-	protected $applicationId = 1;
+	protected $applications = array();
 
 	/**
 	 * Execute and display a template script.
@@ -42,15 +34,11 @@ class LanguagepackViewLanguages extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		/** @var \LanguagepackModelLanguages $model */
+		/** @var \LanguagepackModelApplications $model */
 		$model = $this->getModel();
+		$this->applications = $model->getItems();
 
-		// TODO: Move to the model
-		$model->setState('application_id', $this->applicationId);
-
-		$this->languages = $model->getItems();
-
-		if ($this->languages === false)
+		if ($this->applications === false)
 		{
 			// TODO: Improve this get all errors and pipe them all in maybe a custom exception
 			throw new \RuntimeException($model->getError());

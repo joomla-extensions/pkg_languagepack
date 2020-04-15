@@ -16,7 +16,7 @@ use Joomla\CMS\MVC\Model\ListModel;
  *
  * @since  1.0
  */
-class LanguagepackModelLanguages extends ListModel
+class LanguagepackModelApplications extends ListModel
 {
 	/**
 	 * Method to get a \JDatabaseQuery object for retrieving the data set from a database.
@@ -29,10 +29,8 @@ class LanguagepackModelLanguages extends ListModel
 	{
 		$db = $this->getDbo();
 
-		// TODO: Sanity check application_id is in the state?
 		return $db->getQuery(true)
 			->select('*')
-			->from($db->quoteName('#__languagepack_languages'))
-			->where($db->quoteName('application_id') . ' = ' . $this->getState('application_id'));
+			->from($db->quoteName('#__languagepack_applications'));
 	}
 }
