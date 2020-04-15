@@ -16,7 +16,7 @@ use Joomla\CMS\Language\Text;
 
 <div class="languages">
     <h1>
-        <?php echo Text::sprintf('COM_LANGUAGE_PACK_TRANSLATIONS_AVAILABLE_IN', $this->joomlaVersion) ?>
+        <?php echo Text::sprintf('COM_LANGUAGE_PACK_TRANSLATIONS_AVAILABLE_IN', $this->applicationId) ?>
     </h1>
     <?php if (!empty($this->languages)) : ?>
     <ul>

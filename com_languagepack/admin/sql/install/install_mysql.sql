@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_sources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --
--- Table structure for table `#__languagepack_jversions`
+-- Table structure for table `#__languagepack_applications`
 --
-CREATE TABLE IF NOT EXISTS `#__languagepack_jversions` (
+CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
+  `alias` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
@@ -23,16 +24,17 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_jversions` (
 --
 CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `alias` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
-  `lang_code` VARCHAR(5) NOT NULL,
-  `jversion_id` INT(10) unsigned NOT NULL,
+  `lang_code` VARCHAR(7) NOT NULL,
+  `application_id` INT(10) unsigned NOT NULL,
   `source_id` int(10) unsigned NOT NULL,
   `ars_category` int(10) unsigned NOT NULL,
   `group_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_languages_group_id` FOREIGN KEY (`group_id`) REFERENCES `#__usergroups` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_source_id` FOREIGN KEY (`source_id`) REFERENCES `#__languagepack_sources` (`id`)  ON DELETE NO ACTION,
-  CONSTRAINT `fk_languagepack_languages_joomla_version` FOREIGN KEY (`jversion_id`) REFERENCES `#__languagepack_jversions` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_languages_application_id` FOREIGN KEY (`application_id`) REFERENCES `#__languagepack_applications` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -59,9 +61,9 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 --
 -- Populate data into the Joomla Versions table
 --
-INSERT INTO `#__languagepack_jversions` (`name`) VALUES
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X');
+INSERT INTO `#__languagepack_applications` (`name`, `alias`) VALUES
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'translation10'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'translation15'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'translation25'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'translation3'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'translation4');
