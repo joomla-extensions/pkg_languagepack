@@ -46,8 +46,13 @@ class LanguagepackRouter extends RouterView
 		$applications = new RouterViewConfiguration('applications');
 		$this->registerView($applications);
 
+		// TODO: Is this required? The view doesn't exist - but I need a parent key to set
+		$application = new RouterViewConfiguration('application');
+		$application->setKey('application_id');
+		$this->registerView($application);
+
 		$languages = new RouterViewConfiguration('languages');
-		$languages->setKey('id')->setParent($applications, 'application_id');
+		$languages->setKey('id')->setParent($application, 'application_id');
 		$this->registerView($languages);
 
 		$language = new RouterViewConfiguration('language');
