@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_jversions` (
 CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
-  `lang_code` VARCHAR(5) NOT NULL,
+  `lang_code` VARCHAR(7) NOT NULL,
   `jversion_id` INT(10) unsigned NOT NULL,
   `source_id` int(10) unsigned NOT NULL,
   `ars_category` int(10) unsigned NOT NULL,
