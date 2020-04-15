@@ -62,6 +62,7 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 -- Populate data into the Joomla Versions table
 --
 INSERT INTO `#__languagepack_applications` (`name`, `alias`) VALUES
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'translation10'),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'translation15'),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'translation25'),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'translation3'),
