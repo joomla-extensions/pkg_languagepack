@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 /** @var  $this  LanguagepackViewLanguages */
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 ?>
 
 <div class="languages">
@@ -22,7 +23,9 @@ use Joomla\CMS\Language\Text;
     <ul>
         <?php foreach ($this->languages as $language): ?>
         <li id="lang-<?php echo $language->lang_code ?>">
-            <p><?php echo $language->name; ?></p>
+            <a href="<?php echo Route::_('index.php?option=com_languagepack&view=language&lang=' . $language->id); ?>">
+		        <?php echo $language->name; ?>
+            </a>
         </li>
         <?php endforeach; ?>
     </ul>
