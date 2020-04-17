@@ -26,12 +26,11 @@ class LanguagepackViewLanguages extends HtmlView
 	protected $languages = array();
 
 	/**
-	 * The application we are listing languages for
+	 * The application name we are listing languages for
 	 *
-	 * @var  integer
-	 * @TODO: Make a menu type and set properly
+	 * @var  string
 	 */
-	protected $applicationId = 1;
+	protected $applicationId;
 
 	/**
 	 * Execute and display a template script.
@@ -44,10 +43,7 @@ class LanguagepackViewLanguages extends HtmlView
 	{
 		/** @var \LanguagepackModelLanguages $model */
 		$model = $this->getModel();
-
-		// TODO: Move to the model
-		$model->setState('application_id', $this->applicationId);
-
+		$this->applicationId = $model->getApplicationName();
 		$this->languages = $model->getItems();
 
 		if ($this->languages === false)
