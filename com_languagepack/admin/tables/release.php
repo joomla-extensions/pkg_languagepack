@@ -12,11 +12,11 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Table\Table;
 
 /**
- * Contact Table class.
+ * Release Table class.
  *
  * @since  1.0
  */
-class ContactTableContact extends Table
+class LanguagepackTableRelease extends Table
 {
 	/**
 	 * Constructor
@@ -27,6 +27,6 @@ class ContactTableContact extends Table
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__languagepack_languages', 'id', $db);
+		parent::__construct('#__languagepack_releases', 'id', $db);
 	}
 }
