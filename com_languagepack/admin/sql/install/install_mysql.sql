@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
 --
 -- Table structure for table `#__languagepack_releases`
 -- TODO: Foreign Key on ARS Releases
+-- TODO: Unique key on release name. Release Name should allow longer name
 --
 CREATE TABLE IF NOT EXISTS `#__languagepack_releases` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
