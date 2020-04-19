@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\FormController;
 
 /**
@@ -61,7 +62,7 @@ class LanguagepackControllerRelease extends FormController
 	{
 		$append = parent::getRedirectToListAppend();
 
-		$append .= '&lang=' . $this->getInput()->get->getInt('lang');
+		$append .= '&lang=' . Factory::getApplication()->input->getInt('lang');
 
 		return $append;
 	}

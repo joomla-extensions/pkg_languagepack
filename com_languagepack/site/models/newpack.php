@@ -89,4 +89,35 @@ class LanguagepackModelNewpack extends AdminModel
 
 		return $data;
 	}
+
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	protected function populateState()
+	{
+		$app = JFactory::getApplication();
+		$this->setState('language_id', $app->input->getInt('lang'));
+
+		parent::populateState();
+	}
+
+	/**
+	 * Method to save the form data.
+	 *
+	 * @param   array  $data  The form data.
+	 *
+	 * @return  boolean  True on success.
+	 *
+	 * @since   1.0
+	 */
+	public function save($data)
+	{
+		$data['maintainer_id'] = Factory::getUser()->id;
+
+		return parent::save($data);
+	}
 }
