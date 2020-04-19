@@ -29,12 +29,15 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
   `lang_code` VARCHAR(7) NOT NULL,
   `application_id` INT(10) unsigned NOT NULL,
   `source_id` int(10) unsigned NOT NULL,
-  `ars_category` int(10) unsigned NOT NULL,
+  `ars_environment` bigint(20) NOT NULL,
+  `ars_category` bigint(20) NOT NULL,
   `group_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_languages_group_id` FOREIGN KEY (`group_id`) REFERENCES `#__usergroups` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_source_id` FOREIGN KEY (`source_id`) REFERENCES `#__languagepack_sources` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_application_id` FOREIGN KEY (`application_id`) REFERENCES `#__languagepack_applications` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_languages_ars_category` FOREIGN KEY (`ars_category`) REFERENCES `#__ars_categories` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --
