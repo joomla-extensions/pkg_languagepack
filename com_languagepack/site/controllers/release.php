@@ -62,7 +62,7 @@ class LanguagepackControllerRelease extends FormController
 	{
 		$append = parent::getRedirectToListAppend();
 
-		$append .= '&langid=' . Factory::getApplication()->input->getInt('langid');
+		$append .= '&langid=' . Factory::getApplication()->input->getInt('langId');
 
 		return $append;
 	}

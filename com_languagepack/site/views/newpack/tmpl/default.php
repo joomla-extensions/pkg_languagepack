@@ -34,7 +34,7 @@ Factory::getDocument()->addScriptDeclaration("
     <h1>
 		<?php echo Text::sprintf('COM_LANGUAGE_PACK_NEWPACK_CREATE_RELEASE') ?>
     </h1>
-    <form action="<?php echo Route::_('index.php?option=com_languagepack&id=' . (int) $this->item->id . '&langid=' . $this->langId); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
+    <form action="<?php echo Route::_('index.php?option=com_languagepack&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
 		<?php echo $this->form->renderField('id'); ?>
 	    <?php echo $this->form->renderField('release_name'); ?>
         <button type="submit" class="btn btn-primary" onclick="Joomla.submitbutton('release.save')">
@@ -44,6 +44,7 @@ Factory::getDocument()->addScriptDeclaration("
 		    <?php echo Text::_('JCANCEL'); ?>
         </button>
 
+        <input type="hidden" name="langId" value="<?php echo $this->langId; ?>" />
         <input type="hidden" name="task" value="" />
 	    <?php echo HTMLHelper::_('form.token'); ?>
     </form>

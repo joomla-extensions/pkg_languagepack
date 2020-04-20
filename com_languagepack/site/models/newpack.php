@@ -124,9 +124,7 @@ class LanguagepackModelNewpack extends AdminModel
 		$data['maintainer_id'] = Factory::getUser()->id;
 
 		$languageTable = $this->getTable('Language');
-
-		// TODO: Pull language from $data instead of the state
-		$languageTable->load($this->getState('language_id'));
+		$languageTable->load($data['langId']);
 
 		// Assemble data for generating the ARS release and the ZIP
 		// TODO: Don't hardcode
@@ -139,6 +137,8 @@ class LanguagepackModelNewpack extends AdminModel
 
 		if (!$this->generateZipToS3($languageTable, $joomlaVersion))
 		{
+			$this->setError(Text::_('COM_LANGUAGE_FAILED_TO_GENERATE_ZIP'));
+
 			return false;
 		}
 
@@ -178,12 +178,16 @@ class LanguagepackModelNewpack extends AdminModel
 		// Skip loading if it exists
 		if ($releasesModel->load(['category_id' => $arsReleaseData['category_id'], 'version' => $arsReleaseData['version']]))
 		{
+			$this->setError(Text::_('COM_LANGUAGE_ARS_RELEASE_ALREADY_EXISTS'));
+
 			return false;
 		}
 
 		// Fail saving the item if it already exists in ARS
 		if ($itemsModel->load(['title' => $arsItemData['title']]))
 		{
+			$this->setError(Text::_('COM_LANGUAGE_ARS_RELEASE_ITEM_ALREADY_EXISTS'));
+
 			return false;
 		}
 
