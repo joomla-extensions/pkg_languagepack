@@ -166,6 +166,7 @@ class LanguagepackModelNewpack extends AdminModel
 			'maturity'    => 'stable',
 			'description' => '<p>This is the ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion . '</p>',
 			'created'     => $dateNow->toSql(),
+			'access'      => '1',
 		];
 
 		// Build Item Data (omitting the release ID which will be added after creation)
@@ -176,6 +177,7 @@ class LanguagepackModelNewpack extends AdminModel
 			'filename'     => $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip',
 			'environments' => [(string) $languageTable->ars_environment],
 			'created'      => $dateNow->toSql(),
+			'access'       => '1',
 		];
 
 		// Skip loading if it exists
