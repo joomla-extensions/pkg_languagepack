@@ -41,7 +41,7 @@ class LanguagepackModelLanguage extends ItemModel
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// TODO: Respect the menu type language code if set from the menu
-		$this->setState('language_id', Factory::getApplication()->input->getInt('lang'));
+		$this->setState('language_id', Factory::getApplication()->input->getInt('langid'));
 
 		parent::populateState($ordering, $direction);
 	}

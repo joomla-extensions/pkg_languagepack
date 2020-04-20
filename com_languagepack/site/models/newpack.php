@@ -102,7 +102,7 @@ class LanguagepackModelNewpack extends AdminModel
 	protected function populateState()
 	{
 		$app = JFactory::getApplication();
-		$this->setState('language_id', $app->input->getInt('lang'));
+		$this->setState('language_id', $app->input->getInt('langid'));
 
 		parent::populateState();
 	}

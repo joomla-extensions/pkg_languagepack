@@ -23,7 +23,7 @@ use Joomla\CMS\Router\Route;
     <ul>
         <?php foreach ($this->languages as $language): ?>
         <li id="lang-<?php echo $language->lang_code ?>">
-            <a href="<?php echo Route::_('index.php?option=com_languagepack&view=language&lang=' . $language->id); ?>">
+            <a href="<?php echo Route::_('index.php?option=com_languagepack&view=language&langid=' . $language->id); ?>">
 		        <?php echo $language->name; ?>
             </a>
         </li>
