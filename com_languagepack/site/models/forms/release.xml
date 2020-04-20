@@ -8,9 +8,22 @@
             readonly="true"
         />
         <field
-            name="release_name"
+            name="joomla_version"
             type="text"
-            label="COM_LANGUAGEPACK_RELEASE_RELEASE_NAME"
+            label="COM_LANGUAGEPACK_RELEASE_JOOMLA_VERSION_LABEL"
+        />
+        <field
+            name="language_pack_version"
+            type="integer"
+            label="COM_LANGUAGEPACK_RELEASE_LANGUAGE_PACK_VERSION_LABEL"
+            default="1"
+            first="1"
+            last="20"
+            step="1"
+        />
+        <field
+            name="langId"
+            type="hidden"
         />
     </fieldset>
 </form>

@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
 
 --
 -- Table structure for table `#__languagepack_languages`
--- TODO: Foreign Key on ARS Category
 --
 CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,

@@ -36,7 +36,8 @@ Factory::getDocument()->addScriptDeclaration("
     </h1>
     <form action="<?php echo Route::_('index.php?option=com_languagepack&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
 		<?php echo $this->form->renderField('id'); ?>
-	    <?php echo $this->form->renderField('release_name'); ?>
+	    <?php echo $this->form->renderField('joomla_version'); ?>
+	    <?php echo $this->form->renderField('language_pack_version'); ?>
         <button type="submit" class="btn btn-primary" onclick="Joomla.submitbutton('release.save')">
             <?php echo Text::_('JSUBMIT'); ?>
         </button>

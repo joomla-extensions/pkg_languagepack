@@ -84,7 +84,10 @@ class LanguagepackModelNewpack extends AdminModel
 
 		if (empty($data))
 		{
+			/** @var \Joomla\CMS\Object\CMSObject $data */
 			$data = $this->getItem();
+
+			$data->set('langId', $this->getState('language_id'));
 		}
 
 		$this->preprocessData('com_languagepack.newpack', $data);
@@ -124,15 +127,21 @@ class LanguagepackModelNewpack extends AdminModel
 		$data['maintainer_id'] = Factory::getUser()->id;
 
 		$languageTable = $this->getTable('Language');
-		$languageTable->load($data['langId']);
+		$loadResult = $languageTable->load($data['langId']);
+
+		if (!$loadResult)
+		{
+			$this->setError($languageTable->getError());
+
+			return false;
+		}
 
 		// Assemble data for generating the ARS release and the ZIP
-		// TODO: Don't hardcode
-		$joomlaVersion = '3.9.16';
-		$releaseVersion = '1';
+		$joomlaVersion = $data['joomla_version'];
+		$releaseVersion = $data['language_pack_version'];
 		$completeVersion = $joomlaVersion . '.' . $releaseVersion;
-		$languageName = 'French';
-		$languageCode = 'fr-FR';
+		$languageName = $languageTable->name;
+		$languageCode = $languageTable->lang_code;
 		$dateNow = new Date;
 
 		if (!$this->generateZipToS3($languageTable, $joomlaVersion))
@@ -150,9 +159,8 @@ class LanguagepackModelNewpack extends AdminModel
 		/** @var \Akeeba\ReleaseSystem\Site\Model\Releases $releasesModel */
 		$releasesModel = $arsContainer->factory->model('Releases');
 
-		// TODO: Grab category from the language
 		$arsReleaseData = [
-			'category_id' => '1',
+			'category_id' => $languageTable->ars_category,
 			'version'     => $completeVersion,
 			'alias'       => str_replace('.', '-', $completeVersion),
 			'maturity'    => 'stable',
@@ -161,17 +169,12 @@ class LanguagepackModelNewpack extends AdminModel
 		];
 
 		// Build Item Data (omitting the release ID which will be added after creation)
-		// TODO: Environment data join in the language table? This is currently hardcoded - needs to be mapped to:
-		// Environment 1: Joomla 1.5 translations
-		// Environment 2: Joomla 2.5 translations
-		// Environment 3: Joomla 3.x translations
-		// Currently no environment for Joomla 4.x translations
 		$arsItemData = [
 			'title'        => 'Joomla! ' . $joomlaVersion . ' ' . $languageName . ' ' . $languageCode . ' Language Pack',
 			'description'  => '<p>This is the full ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion . '</p>',
 			'type'         => 'file',
 			'filename'     => $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip',
-			'environments' => ['2'],
+			'environments' => [(string) $languageTable->ars_environment],
 			'created'      => $dateNow->toSql(),
 		];
 
