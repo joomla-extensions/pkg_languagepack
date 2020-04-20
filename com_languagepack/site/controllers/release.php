@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filter\InputFilter;
 use Joomla\CMS\MVC\Controller\FormController;
 
 /**
@@ -62,7 +63,14 @@ class LanguagepackControllerRelease extends FormController
 	{
 		$append = parent::getRedirectToListAppend();
 
-		$append .= '&langid=' . Factory::getApplication()->input->getInt('langId');
+		$formInstance = Factory::getApplication()->input->get('jform', [], 'array');
+		$filter = InputFilter::getInstance();
+
+		if (array_key_exists('langId', $formInstance))
+		{
+			$filteredLangId = $filter->clean($formInstance['langId'], 'INT');
+			$append .= '&langid=' . $filteredLangId;
+		}
 
 		return $append;
 	}
