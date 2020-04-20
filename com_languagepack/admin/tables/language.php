@@ -14,8 +14,6 @@ use Joomla\CMS\Table\Table;
 /**
  * Language Table class.
  *
- * TODO: Currently unused
- *
  * @since  1.0
  */
 class LanguagepackTableLanguage extends Table

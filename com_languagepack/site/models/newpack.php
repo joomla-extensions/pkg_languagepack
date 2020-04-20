@@ -118,11 +118,29 @@ class LanguagepackModelNewpack extends AdminModel
 	 */
 	public function save($data)
 	{
+		// TODO: Some sort of access check on the usergroup of the user
+
 		// Ensure the maintainer ID is the current user id
 		$data['maintainer_id'] = Factory::getUser()->id;
 
-		// TODO: Factory to do the integration based on the source_id of the language
-		//       here we'll generate the zip + upload to S3
+		$languageTable = $this->getTable('Language');
+
+		// TODO: Pull language from $data instead of the state
+		$languageTable->load($this->getState('language_id'));
+
+		// Assemble data for generating the ARS release and the ZIP
+		// TODO: Don't hardcode
+		$joomlaVersion = '3.9.16';
+		$releaseVersion = '1';
+		$completeVersion = $joomlaVersion . '.' . $releaseVersion;
+		$languageName = 'French';
+		$languageCode = 'fr-FR';
+		$dateNow = new Date;
+
+		if (!$this->generateZipToS3($languageTable, $joomlaVersion))
+		{
+			return false;
+		}
 
 		$arsContainer = Container::getInstance('com_ars');
 
@@ -131,15 +149,6 @@ class LanguagepackModelNewpack extends AdminModel
 
 		/** @var \Akeeba\ReleaseSystem\Site\Model\Releases $releasesModel */
 		$releasesModel = $arsContainer->factory->model('Releases');
-
-		// Assemble data for generating the ARS release
-		// TODO: Don't hardcode
-		$joomlaVersion = '3.9.16';
-		$releaseVersion = '1';
-		$completeVersion = $joomlaVersion . '.' . $releaseVersion;
-		$languageName = 'French';
-		$languageCode = 'fr-FR';
-		$dateNow = new Date;
 
 		// TODO: Grab category from the language
 		$arsReleaseData = [
@@ -200,5 +209,22 @@ class LanguagepackModelNewpack extends AdminModel
 		$itemsModel->save($arsItemData);
 
 		return $success;
+	}
+
+	/**
+	 * Method to generate the translation zip and push it to S3.
+	 *
+	 * @param   \LanguagepackTableLanguage  $languageTable  The language table for the current release.
+	 * @param   string                      $releaseName    The release name
+	 *
+	 * @return  boolean  True on success.
+	 *
+	 * @since   1.0
+	 */
+	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, $releaseName)
+	{
+		// TODO: Factory to do the integration based on the source_id of the language
+		//       here we'll generate the zip + upload to S3
+		return true;
 	}
 }
