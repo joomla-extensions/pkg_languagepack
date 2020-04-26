@@ -30,4 +30,6 @@ use Joomla\CMS\Language\Text;
         <?php endforeach; ?>
     </ul>
 	<?php endif; ?>
+    <p><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p>
+    <p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
 </div>
