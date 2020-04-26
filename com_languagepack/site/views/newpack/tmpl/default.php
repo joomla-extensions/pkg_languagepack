@@ -34,13 +34,15 @@ Factory::getDocument()->addScriptDeclaration("
     <h1>
 		<?php echo Text::sprintf('COM_LANGUAGE_PACK_NEWPACK_CREATE_RELEASE') ?>
     </h1>
-    <form action="<?php echo Route::_('index.php?option=com_languagepack&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
+
+    <form action="<?php echo Route::_('index.php?option=com_languagepack&id=' . (int) $this->item->id); ?>" <?php if ($this->sourceId === 3): ?>enctype="multipart/form-data"<?php endif; ?> method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
 		<?php echo $this->form->renderField('id'); ?>
 	    <?php echo $this->form->renderField('joomla_version'); ?>
 	    <?php echo $this->form->renderField('language_pack_version'); ?>
 
-        <!-- TODO: Check if this field needs to be rendered based on the source -->
-	    <?php echo $this->form->renderField('language_file'); ?>
+        <?php if ($this->sourceId === 3): ?>
+	        <?php echo $this->form->renderField('language_file'); ?>
+	    <?php endif; ?>
 
         <button type="submit" class="btn btn-primary" onclick="Joomla.submitbutton('release.save')">
             <?php echo Text::_('JSUBMIT'); ?>

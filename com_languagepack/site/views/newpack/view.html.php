@@ -42,6 +42,13 @@ class LanguagepackViewNewpack extends HtmlView
 	protected $langId;
 
 	/**
+	 * The source ID of the language
+	 *
+	 * @var  integer
+	 */
+	protected $sourceId;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -55,6 +62,9 @@ class LanguagepackViewNewpack extends HtmlView
 		$this->form = $model->getForm();
 		$this->item = $model->getItem();
 		$this->langId = $model->getState('language_id');
+
+		// TODO: Make this dynamic!
+		$this->sourceId = 3;
 
 		return parent::display($tpl);
 	}

@@ -124,19 +124,25 @@ class LanguagepackModelNewpack extends AdminModel
 	 */
 	protected function preprocessForm(\JForm $form, $data, $group = 'content')
 	{
-		// TODO: Make file upload conditional on the source of the current language
-		$addform = new \SimpleXMLElement('<form />');
-		$fieldset = $addform->addChild('fieldset');
-		$fieldset->addAttribute('name', 'file_upload');
-
-		$uploadField = $fieldset->addChild('field');
-		$uploadField->addAttribute('name', 'language_file');
-		$uploadField->addAttribute('type', 'file');
-		$uploadField->addAttribute('label', 'COM_LANGUAGE_PACK_RELEASE_UPLOAD_PACK');
-
-		$form->load($addform, false);
-
 		parent::preprocessForm($form, $data, $group);
+
+		$languageTable = $this->getTable('Language');
+		$loadResult = $languageTable->load($data->langId);
+
+		if ($loadResult && (int) $languageTable->source_id === 3)
+		{
+			$addform = new \SimpleXMLElement('<form />');
+			$fieldset = $addform->addChild('fieldset');
+			$fieldset->addAttribute('name', 'file_upload');
+
+			$uploadField = $fieldset->addChild('field');
+			$uploadField->addAttribute('name', 'language_file');
+			$uploadField->addAttribute('type', 'file');
+			$uploadField->addAttribute('label', 'COM_LANGUAGEPACK_RELEASE_UPLOAD_PACK');
+			$uploadField->addAttribute('accept', 'application/zip');
+
+			$form->load($addform, false);
+		}
 	}
 
 	/**
@@ -168,15 +174,14 @@ class LanguagepackModelNewpack extends AdminModel
 		// Assemble data for generating the ARS release and the ZIP
 		$joomlaVersion = $data['joomla_version'];
 		$releaseVersion = $data['language_pack_version'];
-		$completeVersion = $joomlaVersion . '.' . $releaseVersion;
 		$languageName = $languageTable->name;
 		$languageCode = $languageTable->lang_code;
+		$zipName      = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
 		$dateNow = new Date;
 
-		if (!$this->generateZipToS3($languageTable, $joomlaVersion))
+		if (!$this->generateZipToS3($languageTable, $zipName))
 		{
-			$this->setError(Text::_('COM_LANGUAGE_FAILED_TO_GENERATE_ZIP'));
-
+			// No need to set an error message here as it will be handled inside the function - just bail instead
 			return false;
 		}
 
@@ -186,7 +191,8 @@ class LanguagepackModelNewpack extends AdminModel
 		$itemsModel = $arsContainer->factory->model('Items');
 
 		/** @var \Akeeba\ReleaseSystem\Site\Model\Releases $releasesModel */
-		$releasesModel = $arsContainer->factory->model('Releases');
+		$releasesModel   = $arsContainer->factory->model('Releases');
+		$completeVersion = $joomlaVersion . '.' . $releaseVersion;
 
 		$arsReleaseData = [
 			'category_id' => $languageTable->ars_category,
@@ -253,16 +259,53 @@ class LanguagepackModelNewpack extends AdminModel
 	 * Method to generate the translation zip and push it to S3.
 	 *
 	 * @param   \LanguagepackTableLanguage  $languageTable  The language table for the current release.
-	 * @param   string                      $releaseName    The release name
+	 * @param   string                      $zipName        The name of the file we want to place in S3
 	 *
 	 * @return  boolean  True on success.
 	 *
 	 * @since   1.0
 	 */
-	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, $releaseName)
+	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, $zipName)
 	{
-		// TODO: Factory to do the integration based on the source_id of the language
-		//       here we'll generate the zip + upload to S3
+		if ($languageTable->source_id === 3)
+		{
+			// We need to specify a raw type here as we are recieving a zip with PHP Files in which fails the normal file
+			// security checks
+			$fileUpload = Factory::getApplication()->input->files->get('jform', null, 'RAW');
+			$filename = \JFile::makeSafe($fileUpload['name']);
+
+			if (!strtolower(\JFile::getExt($filename)) == 'zip')
+			{
+				// Wrong file extension - bail
+				$this->setError('COM_LANGUAGEPACK_ERROR_FILE_NOT_A_ZIP');
+
+				return false;
+			}
+		}
+		else
+		{
+			$this->setError('COM_LANGUAGEPACK_ERROR_UPLOADING_TO_REMOTE_STORAGE');
+
+			return false;
+		}
+
+		// TODO: Add any security checks on the zip?
+
+		// The base bucket path for the translations
+		// TODO: Make this path dynamic
+		$bucketPath = 'joomladownloads/core-language-j3/';
+
+		$s3 = \Akeeba\ReleaseSystem\Admin\Helper\AmazonS3::getInstance();
+
+		$success = $s3->putObject($fileUpload['tmp_name'], $bucketPath . $zipName);
+
+		if (!$success)
+		{
+			$this->setError('COM_LANGUAGEPACK_ERROR_UPLOADING_TO_REMOTE_STORAGE');
+
+			return false;
+		}
+
 		return true;
 	}
 }
