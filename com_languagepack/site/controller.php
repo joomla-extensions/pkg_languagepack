@@ -38,14 +38,21 @@ class LanguagepackController extends BaseController
 	 *
 	 * @since   1.0
 	 */
-	public function display($cachable = true, $urlparams = false)
+	public function display($cachable = true, $urlparams = array())
 	{
+		$urlparams += array('langid' => 'INT', 'application_id' => 'INT');
+
 		$vName = $this->input->getCmd('view', $this->default_view);
 
-		// Check people aren't trying to create new packs who can't.
-		if ($vName === 'newpack' && !Factory::getUser()->authorise('core.create', 'com_languagepack'))
+		if ($vName === 'newpack')
 		{
-			throw new \Exception(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'), 403);
+			$cachable = false;
+
+			// Check people aren't trying to create new packs who can't.
+			if (!Factory::getUser()->authorise('core.create', 'com_languagepack'))
+			{
+				throw new \Exception(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'), 403);
+			}
 		}
 
 		return parent::display($cachable, $urlparams);
