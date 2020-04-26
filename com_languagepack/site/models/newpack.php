@@ -163,11 +163,21 @@ class LanguagepackModelNewpack extends AdminModel
 		$data['maintainer_id'] = Factory::getUser()->id;
 
 		$languageTable = $this->getTable('Language');
-		$loadResult = $languageTable->load($data['langId']);
+		$langLoadResult = $languageTable->load($data['langId']);
 
-		if (!$loadResult)
+		if (!$langLoadResult)
 		{
 			$this->setError($languageTable->getError());
+
+			return false;
+		}
+
+		$applicationTable = $this->getTable('Application');
+		$appLoadResult = $applicationTable->load($languageTable->application_id);
+
+		if (!$appLoadResult)
+		{
+			$this->setError($applicationTable->getError());
 
 			return false;
 		}
@@ -211,7 +221,7 @@ class LanguagepackModelNewpack extends AdminModel
 			'description'  => '<p>This is the full ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion . '</p>',
 			'type'         => 'file',
 			'filename'     => $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip',
-			'environments' => [(string) $languageTable->ars_environment],
+			'environments' => [(string) $applicationTable->ars_environment],
 			'created'      => $dateNow->toSql(),
 			'access'       => '1',
 		];

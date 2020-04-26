@@ -15,7 +15,9 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
   `alias` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `ars_environment` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28,14 +30,12 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
   `lang_code` VARCHAR(7) NOT NULL,
   `application_id` INT(10) unsigned NOT NULL,
   `source_id` int(10) unsigned NOT NULL,
-  `ars_environment` bigint(20) NOT NULL,
   `ars_category` bigint(20) NOT NULL,
   `group_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_languages_group_id` FOREIGN KEY (`group_id`) REFERENCES `#__usergroups` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_source_id` FOREIGN KEY (`source_id`) REFERENCES `#__languagepack_sources` (`id`)  ON DELETE NO ACTION,
-  CONSTRAINT `fk_languagepack_languages_application_id` FOREIGN KEY (`application_id`) REFERENCES `#__languagepack_applications` (`id`)  ON DELETE NO ACTION
-  CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_languages_application_id` FOREIGN KEY (`application_id`) REFERENCES `#__languagepack_applications` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_ars_category` FOREIGN KEY (`ars_category`) REFERENCES `#__ars_categories` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
@@ -65,9 +65,9 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 --
 -- Populate data into the Joomla Versions table
 --
-INSERT INTO `#__languagepack_applications` (`name`, `alias`) VALUES
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'translation10'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'translation15'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'translation25'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'translation3'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'translation4');
+INSERT INTO `#__languagepack_applications` (`name`, `alias`, `ars_environment`) VALUES
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'translation10', 10),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'translation15', 3),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'translation25', 2),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'translation3', 1),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'translation4', 11);
