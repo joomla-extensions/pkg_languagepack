@@ -190,7 +190,7 @@ class LanguagepackModelNewpack extends AdminModel
 		$zipName      = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
 		$dateNow = new Date;
 
-		if (!$this->generateZipToS3($languageTable, $zipName))
+		if (!$this->generateZipToS3($languageTable, $applicationTable, $zipName))
 		{
 			// No need to set an error message here as it will be handled inside the function - just bail instead
 			return false;
@@ -269,14 +269,15 @@ class LanguagepackModelNewpack extends AdminModel
 	/**
 	 * Method to generate the translation zip and push it to S3.
 	 *
-	 * @param   \LanguagepackTableLanguage  $languageTable  The language table for the current release.
-	 * @param   string                      $zipName        The name of the file we want to place in S3
+	 * @param   \LanguagepackTableLanguage     $languageTable     The language table for the current release.
+	 * @param   \LanguagepackTableApplication  $applicationTable  The application table for the current release
+	 * @param   string                         $zipName           The name of the file we want to place in S3
 	 *
 	 * @return  boolean  True on success.
 	 *
 	 * @since   1.0
 	 */
-	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, $zipName)
+	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, \LanguagepackTableApplication $applicationTable, $zipName)
 	{
 		if ($languageTable->source_id === 3)
 		{
@@ -302,13 +303,9 @@ class LanguagepackModelNewpack extends AdminModel
 
 		// TODO: Add any security checks on the zip?
 
-		// The base bucket path for the translations
-		// TODO: Make this path dynamic
-		$bucketPath = 'joomladownloads/core-language-j3/';
-
 		$s3 = AmazonS3::getInstance();
 
-		$success = $s3->putObject($fileUpload['tmp_name'], $bucketPath . $zipName);
+		$success = $s3->putObject($fileUpload['tmp_name'], $applicationTable->s3_path . $zipName);
 
 		if (!$success)
 		{
