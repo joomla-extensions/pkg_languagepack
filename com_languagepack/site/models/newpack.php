@@ -157,8 +157,6 @@ class LanguagepackModelNewpack extends AdminModel
 	 */
 	public function save($data)
 	{
-		// TODO: Some sort of access check on the usergroup of the user
-
 		// Ensure the maintainer ID is the current user id
 		$data['maintainer_id'] = Factory::getUser()->id;
 
@@ -168,6 +166,14 @@ class LanguagepackModelNewpack extends AdminModel
 		if (!$langLoadResult)
 		{
 			$this->setError($languageTable->getError());
+
+			return false;
+		}
+
+		// TODO: Should we try and move this to the
+		if (!in_array($languageTable->group_id, Factory::getUser()->getAuthorisedGroups()))
+		{
+			$this->setError(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'));
 
 			return false;
 		}
