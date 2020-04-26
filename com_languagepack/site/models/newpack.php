@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Akeeba\ReleaseSystem\Admin\Helper\AmazonS3;
 use FOF30\Container\Container;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
@@ -295,7 +296,7 @@ class LanguagepackModelNewpack extends AdminModel
 		// TODO: Make this path dynamic
 		$bucketPath = 'joomladownloads/core-language-j3/';
 
-		$s3 = \Akeeba\ReleaseSystem\Admin\Helper\AmazonS3::getInstance();
+		$s3 = AmazonS3::getInstance();
 
 		$success = $s3->putObject($fileUpload['tmp_name'], $bucketPath . $zipName);
 
