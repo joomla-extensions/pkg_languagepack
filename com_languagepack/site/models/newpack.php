@@ -286,14 +286,14 @@ class LanguagepackModelNewpack extends AdminModel
 	 */
 	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, \LanguagepackTableApplication $applicationTable, $zipName)
 	{
-		if ($languageTable->source_id === 3)
+		if ((int) $languageTable->source_id === 3)
 		{
 			// We need to specify a raw type here as we are recieving a zip with PHP Files in which fails the normal file
 			// security checks
-			$fileUpload = Factory::getApplication()->input->files->get('jform', null, 'RAW');
+			$fileUpload = Factory::getApplication()->input->files->get('jform', null, 'RAW')['language_file'];
 			$filename = \JFile::makeSafe($fileUpload['name']);
 
-			if (!strtolower(\JFile::getExt($filename)) == 'zip')
+			if (!strtolower(\JFile::getExt($filename)) === 'zip')
 			{
 				// Wrong file extension - bail
 				$this->setError('COM_LANGUAGEPACK_ERROR_FILE_NOT_A_ZIP');
