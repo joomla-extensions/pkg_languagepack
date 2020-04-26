@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
@@ -19,17 +21,33 @@ use Joomla\CMS\MVC\Controller\BaseController;
 class LanguagepackController extends BaseController
 {
 	/**
-	 * The application object
-	 *
-	 * @var  \Joomla\CMS\Application\CMSApplication
-	 */
-	protected $app;
-
-	/**
 	 * The default view for the display method.
 	 *
 	 * @var    string
-	 * @since  3.0
+	 * @since  1.0
 	 */
-	protected $default_view = 'languages';
+	protected $default_view = 'applications';
+
+	/**
+	 * Method to display a view.
+	 *
+	 * @param   boolean  $cachable   If true, the view output will be cached.
+	 * @param   boolean  $urlparams  An array of safe URL parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
+	 *
+	 * @return  static  This object to support chaining.
+	 *
+	 * @since   1.0
+	 */
+	public function display($cachable = true, $urlparams = false)
+	{
+		$vName = $this->input->getCmd('view', $this->default_view);
+
+		// Check people aren't trying to create new packs who can't.
+		if ($vName === 'newpack' && !Factory::getUser()->authorise('core.create', 'com_languagepack'))
+		{
+			throw new \Exception(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'), 403);
+		}
+
+		return parent::display($cachable, $urlparams);
+	}
 }

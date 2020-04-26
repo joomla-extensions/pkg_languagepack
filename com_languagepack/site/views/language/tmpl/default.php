@@ -23,7 +23,7 @@ use Joomla\CMS\Router\Route;
     <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_LANDING_PAGE_INFO', $this->language->name) ?></p>
 
 	<?php if (in_array($this->language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
-    <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&view=newpack&langid=' . $this->language->id); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
+    <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&view=release.add&langid=' . $this->language->id); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
 	<?php endif; ?>
 
     <?php // TODO: Check for item id and redirect unauth permissions (see Categories/category.blade.php) ?>
