@@ -218,7 +218,7 @@ class LanguagepackModelNewpack extends AdminModel
 		// Skip loading if it exists
 		if ($releasesModel->load(['category_id' => $arsReleaseData['category_id'], 'version' => $arsReleaseData['version']]))
 		{
-			$this->setError(Text::_('COM_LANGUAGE_ARS_RELEASE_ALREADY_EXISTS'));
+			$this->setError(Text::_('COM_LANGUAGEPACK_ARS_RELEASE_ALREADY_EXISTS'));
 
 			return false;
 		}
@@ -226,7 +226,7 @@ class LanguagepackModelNewpack extends AdminModel
 		// Fail saving the item if it already exists in ARS
 		if ($itemsModel->load(['title' => $arsItemData['title']]))
 		{
-			$this->setError(Text::_('COM_LANGUAGE_ARS_RELEASE_ITEM_ALREADY_EXISTS'));
+			$this->setError(Text::_('COM_LANGUAGEPACK_ARS_RELEASE_ITEM_ALREADY_EXISTS'));
 
 			return false;
 		}
@@ -284,7 +284,7 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 		else
 		{
-			$this->setError('COM_LANGUAGEPACK_ERROR_UPLOADING_TO_REMOTE_STORAGE');
+			$this->setError('COM_LANGUAGEPACK_ERROR_RETRIEVING_TRANSLATED_FILE');
 
 			return false;
 		}
