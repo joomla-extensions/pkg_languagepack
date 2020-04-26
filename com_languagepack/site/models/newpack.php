@@ -170,7 +170,8 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
-		// TODO: Should we try and move this to the
+		// TODO: Should we try and move this to the allowSave method in the controller (it's complex because of the
+		//       dependency on loading the language table data first)
 		if (!in_array($languageTable->group_id, Factory::getUser()->getAuthorisedGroups()))
 		{
 			$this->setError(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'));
