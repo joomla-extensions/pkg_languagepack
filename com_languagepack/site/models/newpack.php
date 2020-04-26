@@ -267,8 +267,17 @@ class LanguagepackModelNewpack extends AdminModel
 		// Add the release ID to the item and save
 		$arsItemData['release_id'] = $releaseData->getId();
 
-		// TODO: Catch exception
-		$itemsModel->save($arsItemData);
+		try
+		{
+			$itemsModel->save($arsItemData);
+		}
+		catch (Exception $e)
+		{
+			// TODO: Rollback our DB Save action and the item creation
+			$this->setError($e->getMessage());
+
+			return false;
+		}
 
 		return $success;
 	}
