@@ -111,6 +111,35 @@ class LanguagepackModelNewpack extends AdminModel
 	}
 
 	/**
+	 * Method to allow derived classes to preprocess the form.
+	 *
+	 * @param   \JForm  $form   A \JForm object.
+	 * @param   mixed   $data   The data expected for the form.
+	 * @param   string  $group  The name of the plugin group to import (defaults to "content").
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 * @throws  \Exception if there is an error in the form event.
+	 */
+	protected function preprocessForm(\JForm $form, $data, $group = 'content')
+	{
+		// TODO: Make file upload conditional on the source of the current language
+		$addform = new \SimpleXMLElement('<form />');
+		$fieldset = $addform->addChild('fieldset');
+		$fieldset->addAttribute('name', 'file_upload');
+
+		$uploadField = $fieldset->addChild('field');
+		$uploadField->addAttribute('name', 'language_file');
+		$uploadField->addAttribute('type', 'file');
+		$uploadField->addAttribute('label', 'COM_LANGUAGE_PACK_RELEASE_UPLOAD_PACK');
+
+		$form->load($addform, false);
+
+		parent::preprocessForm($form, $data, $group);
+	}
+
+	/**
 	 * Method to save the form data.
 	 *
 	 * @param   array  $data  The form data.

@@ -70,7 +70,7 @@ class LanguagepackModelLanguage extends ItemModel
 			$query = $db->getQuery(true)
 				->select('*')
 				->from($db->quoteName('#__languagepack_languages'))
-				->where('id = ' . (int) $pk);
+				->where($db->quoteName('id') . ' = ' . (int) $pk);
 
 			$db->setQuery($query);
 

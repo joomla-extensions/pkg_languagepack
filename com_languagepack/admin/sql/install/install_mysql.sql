@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_releases` (
 -- Populate data into the sources table
 --
 INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
+('upload', 'LANGUAGE_PACK_SOURCE_UPLOAD'),
 ('github', 'LANGUAGE_PACK_SOURCE_GITHUB'),
 ('crowdin', 'LANGUAGE_PACK_SOURCE_CROWDIN');
 

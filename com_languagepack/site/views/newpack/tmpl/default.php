@@ -38,6 +38,10 @@ Factory::getDocument()->addScriptDeclaration("
 		<?php echo $this->form->renderField('id'); ?>
 	    <?php echo $this->form->renderField('joomla_version'); ?>
 	    <?php echo $this->form->renderField('language_pack_version'); ?>
+
+        <!-- TODO: Check if this field needs to be rendered based on the source -->
+	    <?php echo $this->form->renderField('language_file'); ?>
+
         <button type="submit" class="btn btn-primary" onclick="Joomla.submitbutton('release.save')">
             <?php echo Text::_('JSUBMIT'); ?>
         </button>
