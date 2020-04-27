@@ -52,3 +52,6 @@ To build this component run `zip -r com_languagepack.zip com_languagepack` then 
 `zip pkg_languagepack.zip pkg_languagepack.xml com_languagepack.zip`
 
 Then install this into Joomla through the extension manager.
+
+If you are running this locally with a copy of ARS then you may wish to remove the insert into the `#__languagepack_applications`
+table from install_mysql.sql so that there are no foreign keys on the ARS environment table on initial setup
