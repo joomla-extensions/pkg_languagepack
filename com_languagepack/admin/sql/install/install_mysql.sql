@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
   `alias` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(100) NOT NULL,
   `ars_environment` bigint(20) NOT NULL,
   `s3_path` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
@@ -66,9 +67,9 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 --
 -- Populate data into the Joomla Versions table
 --
-INSERT INTO `#__languagepack_applications` (`name`, `alias`, `ars_environment`, `s3_path`) VALUES
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'translation10', 10, 'joomladownloads/translations/joomla10/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'translation15', 3, 'joomladownloads/translations/joomla15/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'translation25', 2, 'joomladownloads/translations/joomla25/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'translation3', 1, 'joomladownloads/translations/joomla3/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'translation4', 11, 'joomladownloads/translations/joomla4/');
+INSERT INTO `#__languagepack_applications` (`name`, `description`, `alias`, `ars_environment`, `s3_path`) VALUES
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0_DESC', 'translation10', 10, 'joomladownloads/translations/joomla10/'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5_DESC', 'translation15', 3, 'joomladownloads/translations/joomla15/'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_DESC', 'translation25', 2, 'joomladownloads/translations/joomla25/'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_3_x_DESC', 'translation3', 1, 'joomladownloads/translations/joomla3/'),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_4_x_DESC', 'translation4', 11, 'joomladownloads/translations/joomla4/');
