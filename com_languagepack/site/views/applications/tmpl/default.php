@@ -26,6 +26,7 @@ use Joomla\CMS\Language\Text;
             <a href="<?php echo Route::_('index.php?option=com_languagepack&view=languages&application_id=' . $application->id); ?>">
                 <?php echo Text::_($application->name); ?>
             </a>
+	        <?php echo Text::_($application->description); ?>
         </li>
         <?php endforeach; ?>
     </ul>
