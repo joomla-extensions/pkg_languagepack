@@ -16,21 +16,21 @@ use Joomla\CMS\Language\Text;
 ?>
 
 <div class="languages">
-    <h1>
-        <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
-    </h1>
-    <?php if (!empty($this->applications)) : ?>
-    <ul>
-        <?php foreach ($this->applications as $application): ?>
-        <li>
-            <a href="<?php echo Route::_('index.php?option=com_languagepack&view=languages&application_id=' . $application->id); ?>">
-                <?php echo Text::_($application->name); ?>
-            </a>
-	        <?php echo Text::_($application->description); ?>
-        </li>
-        <?php endforeach; ?>
-    </ul>
+	<h1>
+		<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
+	</h1>
+	<?php if (!empty($this->applications)) : ?>
+	<ul>
+		<?php foreach ($this->applications as $application): ?>
+		<li>
+			<a href="<?php echo Route::_('index.php?option=com_languagepack&view=languages&application_id=' . $application->id); ?>">
+				<?php echo Text::_($application->name); ?>
+			</a>
+			<?php echo Text::_($application->description); ?>
+		</li>
+		<?php endforeach; ?>
+	</ul>
 	<?php endif; ?>
-    <p><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p>
-    <p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
+	<p><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p>
+	<p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
 </div>
