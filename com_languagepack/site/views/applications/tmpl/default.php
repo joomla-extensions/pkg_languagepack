@@ -19,6 +19,7 @@ use Joomla\CMS\Language\Text;
 	<h1>
 		<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
 	</h1>
+    <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
 	<?php if (!empty($this->applications)) : ?>
 	<div class="languages-versions">
 		<?php foreach ($this->applications as $application): ?>
@@ -37,6 +38,5 @@ use Joomla\CMS\Language\Text;
 		<?php endforeach; ?>
 	</div>
 	<?php endif; ?>
-	<p><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p>
 	<p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
 </div>
