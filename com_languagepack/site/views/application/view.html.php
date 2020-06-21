@@ -12,11 +12,11 @@ defined('_JEXEC') or die;
 use Joomla\CMS\MVC\View\HtmlView;
 
 /**
- * HTML Languages View class for the Language pack component
+ * HTML Application View class for the Language pack component
  *
  * @since  1.0
  */
-class LanguagepackViewLanguages extends HtmlView
+class LanguagepackViewApplication extends HtmlView
 {
 	/**
 	 * List of languages

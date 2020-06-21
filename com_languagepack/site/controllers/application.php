@@ -16,5 +16,5 @@ use Joomla\CMS\MVC\Controller\BaseController;
  *
  * @since  1.0
  */
-class LanguagepackControllerLanguages extends BaseController
+class LanguagepackControllerApplication extends BaseController
 {}

@@ -34,7 +34,7 @@ class LanguagepackControllerRelease extends FormController
 	 * @var    string
 	 * @since  1.0
 	 */
-	protected $view_list = 'language';
+	protected $view_list = 'application';
 
 	/**
 	 * Method to get a model object, loading it if required.

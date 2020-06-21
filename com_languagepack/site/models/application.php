@@ -17,7 +17,7 @@ use Joomla\CMS\MVC\Model\ListModel;
  *
  * @since  1.0
  */
-class LanguagepackModelLanguages extends ListModel
+class LanguagepackModelApplication extends ListModel
 {
 	/**
 	 * Method to auto-populate the model state.
