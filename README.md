@@ -34,7 +34,6 @@ Joomla keeps a log of any created language packs in the language packs table goi
 future it's possible it may be better to replace this through an action log plugin into the central table.
 
 ### Future Goals
-- Fix the router
 - Fix TODO's left in the code. This component was built with a tight MVP in mind and there are many improvements that
 can still be made
 - Direct integration with crowdin to download packs straight from crowdin
