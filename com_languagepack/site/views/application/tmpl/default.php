@@ -48,7 +48,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
                 <!-- TODO: This needs the Itemid in the URL to to work properly -->
                 <p>Download Language Pack:<br> <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category . '&lang=' . $languageCode); ?>"> here</a></p>
 	            <?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
-                    <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
+                    <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
 	            <?php endif; ?>
             </div>
         </div>
