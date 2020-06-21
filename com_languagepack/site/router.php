@@ -51,6 +51,9 @@ class LanguagepackRouter extends RouterView
 			->setKey('application_id');
 		$this->registerView($application);
 
+		$newPack = new RouterViewConfiguration('newpack');
+		$this->registerView($newPack);
+
 		parent::__construct($app, $menu);
 
 		$this->attachRule(new MenuRules($this));

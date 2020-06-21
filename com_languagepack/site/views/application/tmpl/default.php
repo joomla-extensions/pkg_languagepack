@@ -12,8 +12,13 @@ defined('_JEXEC') or die;
 /** @var  $this  LanguagepackViewApplication */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+
+$lang = Factory::getLanguage();
+$languages = LanguageHelper::getLanguages('lang_code');
+$languageCode = $languages[ $lang->getTag() ]->sef;
 ?>
 
 <div class="languages">
@@ -40,7 +45,8 @@ use Joomla\CMS\Router\Route;
                 </div>
                 <p><a name="<?php echo $language->lang_code ?>"></a><span class="contentheading"><?php echo $language->name ?> Translation</span></p>
                 <p>Language: <?php echo $language->name ?> (<?php echo $language->lang_code ?>)</p>
-                <p>Download Language Pack:<br> <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category); ?>"> here</a></p>
+                <!-- TODO: This needs the Itemid in the URL to to work properly -->
+                <p>Download Language Pack:<br> <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category . '&lang=' . $languageCode); ?>"> here</a></p>
 	            <?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
                     <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&view=release.add&langid=' . $language->id); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
 	            <?php endif; ?>
