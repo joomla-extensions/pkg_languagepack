@@ -16,28 +16,29 @@ use Joomla\CMS\Language\Text;
 ?>
 
 <div class="languages">
-    <div class="page-header">
-    <h1>
-        <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
-    </h1>
-    </div>
-    <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
-    <?php if (!empty($this->applications)) : ?>
-    <div class="languages-versions">
-        <?php foreach ($this->applications as $application): ?>
-        <div>
-        <div>
-                <h2><a href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
-                    <?php echo Text::_($application->name); ?>
-                </a></h2>
+  <div class="page-header">
+	  <h1>
+		  <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
+	  </h1>
+  </div>
+  <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
+	<?php if (!empty($this->applications)) : ?>
+	<div class="languages-versions">
+		<?php foreach ($this->applications as $application): ?>
+		<div>
             <div>
-                <?php echo Text::_($application->description); ?>
+                <h2>
+                    <a href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
+                        <?php echo Text::_($application->name); ?>
+                    </a>
+                </h2>
+                <div>
+                    <?php echo Text::_($application->description); ?>
+                </div>
             </div>
-        </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
+		</div>
+		<?php endforeach; ?>
+	</div>
 	<?php endif; ?>
-    
-    <p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
+	<p><?php echo Text::_('COM_LANGUAGE_PACK_HOW_TO_INSTALL'); ?></p>
 </div>

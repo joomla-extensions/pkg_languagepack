@@ -33,6 +33,13 @@ class LanguagepackViewApplication extends HtmlView
 	protected $applicationName;
 
 	/**
+	 * The application id we are listing languages for
+	 *
+	 * @var  integer
+	 */
+	protected $applicationId;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -41,8 +48,16 @@ class LanguagepackViewApplication extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		/** @var \LanguagepackModelLanguages $model */
+		/** @var \LanguagepackModelApplication $model */
 		$model = $this->getModel();
+		$applicationId = $model->getApplicationId();
+
+		if ($applicationId === null)
+		{
+			throw new \RuntimeException('Invalid Application', 404);
+		}
+
+		$this->applicationId   = $applicationId;
 		$this->applicationName = $model->getApplicationName();
 		$this->languages = $model->getItems();
 

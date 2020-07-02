@@ -87,6 +87,9 @@ class LanguagepackControllerRelease extends FormController
 	 */
 	protected function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
 	{
+		// Override the layout to be default
+		$this->input->set('layout', 'default');
+
 		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
 
 		// Setup redirect info.
@@ -95,6 +98,14 @@ class LanguagepackControllerRelease extends FormController
 		if ($langId)
 		{
 			$append .= '&langid=' . $langId;
+		}
+
+		// Setup redirect info.
+		$applicationId = $this->input->getInt('application_id');
+
+		if ($applicationId)
+		{
+			$append .= '&application_id=' . $applicationId;
 		}
 
 		return $append;

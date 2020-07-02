@@ -51,6 +51,12 @@ class LanguagepackRouter extends RouterView
 			->setKey('application_id');
 		$this->registerView($application);
 
+		$newPack = (new RouterViewConfiguration('newpack'))
+			->setParent($application, 'application_id')
+			->setKey('langid');
+
+		$this->registerView($newPack);
+
 		parent::__construct($app, $menu);
 
 		$this->attachRule(new MenuRules($this));
@@ -113,7 +119,7 @@ class LanguagepackRouter extends RouterView
 	/**
 	 * Method to get the segment(s) for an application
 	 *
-	 * @param   string  $segment  Segment of the contact to retrieve the ID for
+	 * @param   string  $segment  Segment of the application to retrieve the ID for
 	 * @param   array   $query    The request that is parsed right now
 	 *
 	 * @return  mixed   The id of this item or false
@@ -123,6 +129,51 @@ class LanguagepackRouter extends RouterView
 		$query = $this->db->getQuery(true);
 		$query->select($this->db->quoteName('id'))
 			->from($this->db->quoteName('#__languagepack_applications'))
+			->where('alias = ' . $this->db->quote($segment));
+		$this->db->setQuery($query);
+
+		return (int) $this->db->loadResult();
+	}
+
+	/**
+	 * Method to get the segment(s) for a language
+	 *
+	 * @param   string  $id     ID of the language to retrieve the segments for
+	 * @param   array   $query  The request that is built right now
+	 *
+	 * @return  array|string  The segments of this item
+	 */
+	public function getNewpackSegment($id, $query)
+	{
+		if (!strpos($id, ':'))
+		{
+			$dbquery = $this->db->getQuery(true);
+			$dbquery->select($this->db->quoteName('alias'))
+				->from($this->db->quoteName('#__languagepack_languages'))
+				->where('id = ' . $dbquery->q((int) $id));
+			$this->db->setQuery($dbquery);
+
+			$id .= ':' . $this->db->loadResult();
+		}
+
+		list($void, $segment) = explode(':', $id, 2);
+
+		return array($void => $segment);
+	}
+
+	/**
+	 * Method to get the segment(s) for a language
+	 *
+	 * @param   string  $segment  Segment of the language to retrieve the ID for
+	 * @param   array   $query    The request that is parsed right now
+	 *
+	 * @return  mixed   The id of this item or false
+	 */
+	public function getNewpackId($segment, $query)
+	{
+		$query = $this->db->getQuery(true);
+		$query->select($this->db->quoteName('id'))
+			->from($this->db->quoteName('#__languagepack_languages'))
 			->where('alias = ' . $this->db->quote($segment));
 		$this->db->setQuery($query);
 

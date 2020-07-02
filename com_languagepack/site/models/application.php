@@ -74,4 +74,16 @@ class LanguagepackModelApplication extends ListModel
 
 		return $db->loadResult();
 	}
+
+	/**
+	 * Method to get an application name for the active application id.
+	 *
+	 * @return  integer|null
+	 *
+	 * @since   1.0
+	 */
+	public function getApplicationId()
+	{
+		return $this->getState('application_id');
+	}
 }
