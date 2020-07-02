@@ -16,10 +16,12 @@ use Joomla\CMS\Language\Text;
 ?>
 
 <div class="languages">
-	<h1>
-		<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
-	</h1>
-    <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
+  <div class="page-header">
+	  <h1>
+		  <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
+	  </h1>
+  </div>
+  <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
 	<?php if (!empty($this->applications)) : ?>
 	<div class="languages-versions">
 		<?php foreach ($this->applications as $application): ?>
