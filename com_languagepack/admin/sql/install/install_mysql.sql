@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `ars_visual_group` bigint(20) NOT NULL,
   `s3_path` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_ars_visual_group` FOREIGN KEY (`ars_visual_group`) REFERENCES `#__ars_vgroups` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
