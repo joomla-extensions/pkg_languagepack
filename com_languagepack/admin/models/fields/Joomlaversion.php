@@ -53,7 +53,7 @@ class LanguagepackFormFieldJoomlaversion extends JFormFieldList
 
 			$query = $db->getQuery(true)
 				->select($db->quoteName(array('id','name'), array('value', 'text')))
-				->from($db->quoteName('#__languagepack_jversions'));
+				->from($db->quoteName('#__languagepack_applications'));
 
 			$db->setQuery($query);
 
