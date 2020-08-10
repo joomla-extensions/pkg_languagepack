@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `description` VARCHAR(100) NOT NULL,
   `ars_environment` bigint(20) NOT NULL,
   `ars_visual_group` bigint(20) NOT NULL,
-  `s3_path` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_languages_ars_environment` FOREIGN KEY (`ars_environment`) REFERENCES `#__ars_environments` (`id`)  ON DELETE NO ACTION,
   CONSTRAINT `fk_languagepack_languages_ars_visual_group` FOREIGN KEY (`ars_visual_group`) REFERENCES `#__ars_vgroups` (`id`)  ON DELETE NO ACTION
@@ -69,9 +68,9 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 --
 -- Populate data into the Joomla Versions table
 --
-INSERT INTO `#__languagepack_applications` (`name`, `description`, `alias`, `ars_environment`, `ars_visual_group`, `s3_path`) VALUES
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0_DESC', 'translation10', 10, 7, 'joomladownloads/translations/joomla10/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5_DESC', 'translation15', 3, 2, 'joomladownloads/translations/joomla15/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_DESC', 'translation25', 2, 3, 'joomladownloads/translations/joomla25/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_3_x_DESC', 'translation3', 1, 4, 'joomladownloads/translations/joomla3/'),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_4_x_DESC', 'translation4', 11, 8, 'joomladownloads/translations/joomla4/');
+INSERT INTO `#__languagepack_applications` (`name`, `description`, `alias`, `ars_environment`, `ars_visual_group`) VALUES
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0_DESC', 'translation10', 10, 7),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5_DESC', 'translation15', 3, 2),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_DESC', 'translation25', 2, 3),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_3_x_DESC', 'translation3', 1, 4),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_4_x_DESC', 'translation4', 11, 8);

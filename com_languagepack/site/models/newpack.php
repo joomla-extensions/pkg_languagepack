@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Akeeba\ReleaseSystem\Admin\Helper\AmazonS3;
+use Akeeba\ReleaseSystem\Site\Model\Categories;
 use FOF30\Container\Container;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
@@ -197,13 +198,23 @@ class LanguagepackModelNewpack extends AdminModel
 		$zipName      = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
 		$dateNow = new Date;
 
-		if (!$this->generateZipToS3($languageTable, $applicationTable, $zipName))
+		$arsContainer = Container::getInstance('com_ars');
+
+		/** @var \Akeeba\ReleaseSystem\Site\Model\Categories $itemsModel */
+		$categoriesModel = $arsContainer->factory->model('Categories');
+
+		if (!$categoriesModel->load(['category_id' => $languageTable->ars_category]))
+		{
+			$this->setError(Text::_('COM_LANGUAGEPACK_CATEGORY_NOT_FOUND'));
+
+			return false;
+		}
+
+		if (!$this->generateZipToS3($languageTable, $categoriesModel, $zipName))
 		{
 			// No need to set an error message here as it will be handled inside the function - just bail instead
 			return false;
 		}
-
-		$arsContainer = Container::getInstance('com_ars');
 
 		/** @var \Akeeba\ReleaseSystem\Site\Model\Items $itemsModel */
 		$itemsModel = $arsContainer->factory->model('Items');
@@ -285,15 +296,15 @@ class LanguagepackModelNewpack extends AdminModel
 	/**
 	 * Method to generate the translation zip and push it to S3.
 	 *
-	 * @param   \LanguagepackTableLanguage     $languageTable     The language table for the current release.
-	 * @param   \LanguagepackTableApplication  $applicationTable  The application table for the current release
-	 * @param   string                         $zipName           The name of the file we want to place in S3
+	 * @param   \LanguagepackTableLanguage     $languageTable    The language table for the current release.
+	 * @param   Categories                     $categoriesModel  The ARS Category Model for the release
+	 * @param   string                         $zipName          The name of the file we want to place in S3
 	 *
 	 * @return  boolean  True on success.
 	 *
 	 * @since   1.0
 	 */
-	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, \LanguagepackTableApplication $applicationTable, $zipName)
+	private function generateZipToS3(\LanguagepackTableLanguage $languageTable, Categories $categoriesModel, $zipName)
 	{
 		if ((int) $languageTable->source_id === 3)
 		{
@@ -321,7 +332,7 @@ class LanguagepackModelNewpack extends AdminModel
 
 		$s3 = AmazonS3::getInstance();
 
-		$success = $s3->putObject($fileUpload['tmp_name'], $applicationTable->s3_path . $zipName);
+		$success = $s3->putObject($fileUpload['tmp_name'], $categoriesModel->directory . $zipName);
 
 		if (!$success)
 		{
