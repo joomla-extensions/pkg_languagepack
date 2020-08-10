@@ -332,7 +332,7 @@ class LanguagepackModelNewpack extends AdminModel
 
 		$s3 = AmazonS3::getInstance();
 
-		$success = $s3->putObject($fileUpload['tmp_name'], $categoriesModel->directory . $zipName);
+		$success = $s3->putObject($fileUpload['tmp_name'], $categoriesModel->directory . '/' . $zipName);
 
 		if (!$success)
 		{
