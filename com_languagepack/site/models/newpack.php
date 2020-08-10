@@ -203,7 +203,7 @@ class LanguagepackModelNewpack extends AdminModel
 		/** @var \Akeeba\ReleaseSystem\Site\Model\Categories $itemsModel */
 		$categoriesModel = $arsContainer->factory->model('Categories');
 
-		if (!$categoriesModel->load(['category_id' => $languageTable->ars_category]))
+		if (!$categoriesModel->load(['id' => $languageTable->ars_category]))
 		{
 			$this->setError(Text::_('COM_LANGUAGEPACK_CATEGORY_NOT_FOUND'));
 
