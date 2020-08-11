@@ -16,6 +16,7 @@ use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Log\Log;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 
@@ -336,7 +337,9 @@ class LanguagepackModelNewpack extends AdminModel
 
 		if (!$success)
 		{
+			// Pretty message to the poor translation team. Log the real error.
 			$this->setError('COM_LANGUAGEPACK_ERROR_UPLOADING_TO_REMOTE_STORAGE');
+			Log::add($s3->getError(), Log::ERROR, 'com-languagepack');
 
 			return false;
 		}
