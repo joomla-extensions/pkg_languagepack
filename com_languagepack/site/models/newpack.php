@@ -331,9 +331,25 @@ class LanguagepackModelNewpack extends AdminModel
 
 		// TODO: Add any security checks on the zip?
 
-		$s3 = AmazonS3::getInstance();
+		$prefix = 's3://';
 
-		$success = $s3->putObject($fileUpload['tmp_name'], $categoriesModel->directory . '/' . $zipName);
+		// Strip the s3 prefix from the upload key - just how the AWS API works vs what's stored in ARS
+		if (0 !== strpos($categoriesModel->directory, $prefix))
+		{
+			$this->setError('COM_LANGUAGEPACK_ERROR_UPLOADING_TO_REMOTE_STORAGE');
+			Log::add(
+				'Category ' + $categoriesModel->title + ' does not appear to have an S3 backend',
+				Log::ERROR,
+				'com-languagepack'
+			);
+
+			return false;
+		}
+
+		$s3UploadPath = substr($categoriesModel->directory, strlen($prefix));
+
+		$s3 = AmazonS3::getInstance();
+		$success = $s3->putObject($fileUpload['tmp_name'], $s3UploadPath . '/' . $zipName);
 
 		if (!$success)
 		{
