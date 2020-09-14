@@ -66,11 +66,14 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
                 </div>
                 <p><a name="<?php echo $language->lang_code ?>"></a><span class="contentheading"><?php echo $language->name ?> Translation</span></p>
                 <p>Language: <?php echo $language->name ?> (<?php echo $language->lang_code ?>)</p>
+                <p>Team Coordinator: <a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=<?php echo $language->coordinator_forum_link ?>"><?php echo $language->coordinator; ?></a></p>
+                <?php if (!empty($language->coordinator_email)) : ?><p>Contact: <?php echo $language->coordinator_email; ?></p><?php endif; ?>
                 <!-- TODO: This needs the Itemid in the URL to to work properly -->
-                <p>Download Language Pack:<br> <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category . '&lang=' . $languageCode); ?>"> here</a></p>
+                <p>Download Language Pack: <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category . '&lang=' . $languageCode); ?>"> here</a></p>
                 <?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
                     <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
                 <?php endif; ?>
+                <?php echo !empty($language->website) ? 'Website: <a href="' . $language->website . '">' . $language->website . '</a>' : ''; ?>
             </div>
         </div>
     </div>
