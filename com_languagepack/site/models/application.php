@@ -76,6 +76,72 @@ class LanguagepackModelApplication extends ListModel
 	}
 
 	/**
+	 * Method to get any extra info for rendering on the page.
+	 *
+	 * @return  string[][]
+	 *
+	 * @since   1.0
+	 */
+	public function getExtraInfo()
+	{
+		// TODO: Store in DB so the component isn't specific to Joomla applications
+		if ($this->getState('application_id') === 4)
+		{
+			return [
+				[
+					'title' => 'How to Create a Joomla! Translation',
+					'body' => "<p>It's easy to translate Joomla! into your language by <a href=\"https://docs.joomla.org/J3.1:Making_a_Language_Pack_for_Joomla\">creating a 3.x language pack</a>.</p>",
+				],
+				[
+					'title' => 'More Information about Translations',
+					'body' => "<p>There are a number of valuable resources for adding your language to Joomla! and learning more about the <a href=\"https://volunteers.joomla.org/teams/core-translation-team\">Core Translation Team</a>. You can ask questions and get tips in the <a href=\"https://forum.joomla.org/viewforum.php?f=11\">Translations Forum</a> or the <a href=\"https://forum.joomla.org/viewforum.php?f=617\">Language Forum</a> and there are a wealth of resources in <a href=\"https://forum.joomla.org/viewforum.php?f=511\">The International Zone Forum</a>.</p>",
+				],
+				[
+					'title' => 'Want to propose packs for a language not listed here?',
+					'body' => "<p>Please contact the <a href=\"https://volunteers.joomla.org/teams/core-translation-team\">Joomla! Core Translation Coordination Team</a></p>",
+				],
+				[
+					'title' => 'Have an issue with the quality of a Translation or want to collaborate with an existing Team?',
+					'body' => 'Please contact the language coordinator stated in the list below.',
+				],
+				[
+					'title' => 'Information about new language functionalities in Joomla! 3.x',
+					'body' => "<p><a href=\"https://docs.joomla.org/International_Enhancements_for_Version_1.6\">3.x brings a lot of new functionalities in Joomla!</a><br> <a href=\"https://docs.joomla.org/Language_Switcher_Tutorial_for_Joomla_1.6\">including a simple multilanguage site implementation</a>.</p>",
+				],
+			];
+		}
+		elseif ($this->getState('application_id') === 3)
+		{
+			return [
+				[
+					'title' => 'How to Create a Joomla! Translation',
+					'body' => "<p>It's easy to translate Joomla into your language by <a href=\"https://docs.joomla.org/J2.5:Making_a_Language_Pack_for_Joomla\">creating a 2.5 language pack</a>.</p>",
+				],
+				[
+					'title' => 'More Information about Translations',
+					'body' => "<p>There are a number of valuable resources for adding your language to Joomla! and learning more about the <a href=\"https://volunteers.joomla.org/teams/core-translation-team\">Core Translation Team</a>. You can ask questions and get tips in the <a href=\"https://forum.joomla.org/viewforum.php?f=11\">Translations Forum</a> or the <a href=\"https://forum.joomla.org/viewforum.php?f=617\">Language Forum</a> and there are a wealth of resources in <a href=\"https://forum.joomla.org/viewforum.php?f=511\">The International Zone Forum</a>.</p>",
+				],
+				[
+					'title' => 'Want to propose packs for a language not listed here?',
+					'body' => "<p>Please contact the <a href=\"https://volunteers.joomla.org/teams/core-translation-team\">Joomla! Core Translation Coordination Team</a></p>",
+				],
+				[
+					'title' => 'Have an issue with the quality of a Translation or want to collaborate with an existing Team?',
+					'body' => 'Please contact the language coordinator stated in the list below.',
+				],
+				[
+					'title' => 'Information about new language functionalities in Joomla! 2.5',
+					'body' => "<p><a href=\"https://docs.joomla.org/International_Enhancements_for_Version_1.6\">2.5 brings a lot of new functionalities in Joomla!</a><br> <a href=\"https://docs.joomla.org/Language_Switcher_Tutorial_for_Joomla_1.6\">including a simple multilanguage site implementation</a>.</p>",
+				],
+			];
+		}
+		else
+		{
+			return [];
+		}
+	}
+
+	/**
 	 * Method to get an application name for the active application id.
 	 *
 	 * @return  integer|null

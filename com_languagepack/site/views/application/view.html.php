@@ -40,6 +40,13 @@ class LanguagepackViewApplication extends HtmlView
 	protected $applicationId;
 
 	/**
+	 * Extra information each array contains a key title and body to be rendered
+	 *
+	 * @var  string[][]
+	 */
+	protected $extraInfo;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -60,6 +67,7 @@ class LanguagepackViewApplication extends HtmlView
 		$this->applicationId   = $applicationId;
 		$this->applicationName = $model->getApplicationName();
 		$this->languages = $model->getItems();
+		$this->extraInfo = $model->getExtraInfo();
 
 		if ($this->languages === false)
 		{
