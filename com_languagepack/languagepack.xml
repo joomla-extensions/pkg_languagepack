@@ -29,13 +29,17 @@
 		</sql>
 	</uninstall>
 	<administration>
+        <menu link='index.php?option=com_languagepack'>COM_LANGUAGEPACK_MAIN_MENU</menu>
 		<files folder="admin">
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
+			<filename>controller.php</filename>
 			<folder>language</folder>
+			<filename>languagepack.php</filename>
 			<folder>models</folder>
 			<folder>tables</folder>
 			<folder>sql</folder>
+			<folder>views</folder>
 		</files>
 	</administration>
 </extension>
