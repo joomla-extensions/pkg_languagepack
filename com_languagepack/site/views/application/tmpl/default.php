@@ -29,7 +29,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
     <p>
     <?php $i = 1; // Counter so we don't show a pipe after the last language ?>
     <?php foreach ($this->languages as $language): ?>
-        <a href="#<?php echo $language->lang_code ?>>"><?php echo $language->name ?></a><?php if (count($this->languages) !== $i): ?> &#124; <?php endif; ?>
+        <a href="#<?php echo $language->lang_code ?>"><?php echo $language->name ?></a><?php if (count($this->languages) !== $i): ?> &#124; <?php endif; ?>
         <?php $i++; ?>
     <?php endforeach;?>
     </p>
