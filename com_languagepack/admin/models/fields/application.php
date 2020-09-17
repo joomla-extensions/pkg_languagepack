@@ -73,6 +73,15 @@ class LanguagepackFormFieldApplication extends JFormFieldList
 			static::$items = $translatedItems;
 		}
 
+		if (isset($this->element['show_all_option']) && (string) $this->element['show_all_option'] === 'true')
+		{
+			$allElement = new \stdClass();
+			$allElement->text = Text::_('COM_LANGUAGEPACK_ALL_APPLICATIONS');
+			$allElement->value = '';
+
+			array_unshift(static::$items, $allElement);
+		}
+
 		return array_merge(parent::getOptions(), static::$items);
 	}
 }

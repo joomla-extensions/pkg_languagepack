@@ -35,6 +35,20 @@ class LanguagepackViewLanguages extends HtmlView
 	protected $pagination;
 
 	/**
+	 * Form object for search filters
+	 *
+	 * @var  \Joomla\CMS\Form\Form
+	 */
+	public $filterForm;
+
+	/**
+	 * The active search filters
+	 *
+	 * @var  array
+	 */
+	public $activeFilters;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -47,6 +61,8 @@ class LanguagepackViewLanguages extends HtmlView
 		$model = $this->getModel();
 		$this->languages  = $model->getItems();
 		$this->pagination = $model->getPagination();
+		$this->filterForm    = $model->getFilterForm();
+		$this->activeFilters = $model->getActiveFilters();
 
 		if ($this->applications === false)
 		{

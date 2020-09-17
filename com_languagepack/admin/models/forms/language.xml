@@ -31,7 +31,7 @@
 		/>
 		<field
 			name="group_id"
-			type="Usergroup"
+			type="UsergroupList"
 			label="COM_LANGUAGEPACK_LANGUAGE_GROUP_LABEL"
 		/>
 		<field

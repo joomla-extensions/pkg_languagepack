@@ -13,10 +13,14 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 ?>
 <form action="index.php?option=com_languagepack&view=languages" method="post" id="adminForm" name="adminForm">
+	<?php
+	echo LayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+	?>
 	<table class="table table-striped table-hover">
 		<thead>
             <tr>
