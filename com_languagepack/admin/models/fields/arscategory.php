@@ -20,7 +20,7 @@ FormHelper::loadFieldClass('list');
  *
  * @since  1.0
  */
-class LanguagepackFormFieldApplication extends JFormFieldList
+class LanguagepackFormFieldArscategory extends JFormFieldList
 {
 	/**
 	 * The form field type.
@@ -28,7 +28,7 @@ class LanguagepackFormFieldApplication extends JFormFieldList
 	 * @var    string
 	 * @since  1.0
 	 */
-	public $type = 'Application';
+	public $type = 'Arscategory';
 
 	/**
 	 * Cached array of the table data.
@@ -52,8 +52,8 @@ class LanguagepackFormFieldApplication extends JFormFieldList
 			$db    = Factory::getDbo();
 
 			$query = $db->getQuery(true)
-				->select($db->quoteName(array('id','name'), array('value', 'text')))
-				->from($db->quoteName('#__languagepack_applications'));
+				->select($db->quoteName(array('id', 'title'), array('value', 'text')))
+				->from($db->quoteName('#__ars_categories'));
 
 			$db->setQuery($query);
 

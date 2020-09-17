@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+	<fieldset addfieldpath="/administrator/components/com_languagepack/models/fields">
 		<field
 			name="id"
 			type="hidden"
@@ -14,12 +14,40 @@
 			default=""
 		/>
 		<field
+			name="alias"
+			type="text"
+			label="COM_LANGUAGEPACK_LANGUAGE_ALIAS_LABEL"
+			size="40"
+			class="inputbox"
+			default=""
+		/>
+		<field
 			name="lang_code"
 			type="text"
 			label="COM_LANGUAGEPACK_LANGUAGE_LANGUAGE_CODE_LABEL"
 			size="40"
 			class="inputbox"
 			default=""
+		/>
+		<field
+			name="group_id"
+			type="Usergroup"
+			label="COM_LANGUAGEPACK_LANGUAGE_GROUP_LABEL"
+		/>
+		<field
+			name="source_id"
+			type="Languagepack.Source"
+			label="COM_LANGUAGEPACK_LANGUAGE_SOURCE_LABEL"
+		/>
+		<field
+			name="application_id"
+			type="Languagepack.Application"
+			label="COM_LANGUAGEPACK_LANGUAGE_APPLICATION_LABEL"
+		/>
+		<field
+			name="ars_category"
+			type="Languagepack.Arscategory"
+			label="COM_LANGUAGEPACK_LANGUAGE_ARS_CATEGORY_LABEL"
 		/>
 		<field
             name="coordinator"
