@@ -49,7 +49,10 @@ use Joomla\CMS\Router\Route;
 						<?php echo HTMLHelper::_('grid.id', $i, $row->id); ?>
 					</td>
 					<td>
-						<?php echo $row->name; ?>
+                        <?php $link = Route::_('index.php?option=com_languagepack&task=language.edit&id=' . $row->id); ?>
+                        <a href="<?php echo $link; ?>">
+	                        <?php echo $row->name; ?>
+                        </a>
 					</td>
 					<td align="center">
 						<?php echo Text::_($row->application_name); ?>
@@ -62,4 +65,7 @@ use Joomla\CMS\Router\Route;
 		<?php endif; ?>
 		</tbody>
 	</table>
+    <input type="hidden" name="task" value=""/>
+    <input type="hidden" name="boxchecked" value="0"/>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

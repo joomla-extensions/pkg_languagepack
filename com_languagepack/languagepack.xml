@@ -33,6 +33,7 @@
 		<files folder="admin">
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
+			<folder>controllers</folder>
 			<filename>controller.php</filename>
 			<folder>language</folder>
 			<filename>languagepack.php</filename>

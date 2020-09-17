@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Model\ListModel;
 
 /**
- * HelloWorldList Model
+ * Language Pack Languages Model
  *
  * @since  1.0
  */
@@ -25,11 +25,9 @@ class LanguagepackModelLanguages extends ListModel
 	 */
 	protected function getListQuery()
 	{
-		// Initialize variables.
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		// Create the base select statement.
 		$query->select($db->quoteName('b.name', 'application_name'))
 			->select('a.*')
 			->from($db->quoteName('#__languagepack_languages', 'a'))

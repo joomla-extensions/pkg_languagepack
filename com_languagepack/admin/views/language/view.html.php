@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
@@ -18,21 +19,21 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
  *
  * @since  1.0
  */
-class LanguagepackViewLanguages extends HtmlView
+class LanguagepackViewLanguage extends HtmlView
 {
 	/**
 	 * List of languages
 	 *
-	 * @var  array
+	 * @var  \Joomla\CMS\Object\Object
 	 */
-	protected $languages = array();
+	protected $item;
 
 	/**
 	 * Pagination Object
 	 *
-	 * @var  \Joomla\CMS\Pagination\Pagination
+	 * @var  \Joomla\CMS\Form\Form
 	 */
-	protected $pagination;
+	protected $form;
 
 	/**
 	 * Execute and display a template script.
@@ -43,20 +44,21 @@ class LanguagepackViewLanguages extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		/** @var \LanguagepackModelLanguages $model */
-		$model = $this->getModel();
-		$this->languages  = $model->getItems();
-		$this->pagination = $model->getPagination();
+		$this->form = $this->get('Form');
+		$this->item = $this->get('Item');
 
-		if ($this->applications === false)
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
 		{
 			// TODO: Improve this get all errors and pipe them all in maybe a custom exception
-			throw new \RuntimeException($model->getError());
+			throw new \RuntimeException($errors);
 		}
 
-		$this->addToolbar();
+		// Set the toolbar
+		$this->addToolBar();
 
-		return parent::display($tpl);
+		// Display the template
+		parent::display($tpl);
 	}
 
 	/**
@@ -68,9 +70,27 @@ class LanguagepackViewLanguages extends HtmlView
 	 */
 	protected function addToolBar()
 	{
-		ToolbarHelper::title(Text::_('COM_LANGUAGEPACK_LANGUAGES_VIEW'));
-		ToolbarHelper::addNew('language.add');
-		ToolbarHelper::editList('language.edit');
-		ToolbarHelper::deleteList('', 'language.delete');
+		$input = Factory::getApplication()->input;
+
+		// Hide Joomla Administrator Main menu
+		$input->set('hidemainmenu', true);
+
+		$isNew = ($this->item->id == 0);
+
+		if ($isNew)
+		{
+			$title = Text::_('COM_LANGUAGEPACK_LANGUAGE_NEW');
+		}
+		else
+		{
+			$title = Text::_('COM_LANGUAGEPACK_LANGUAGE_EDIT');
+		}
+
+		ToolbarHelper::title($title, 'languagepack');
+		ToolbarHelper::save('language.save');
+		ToolbarHelper::cancel(
+			'language.cancel',
+			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
+		);
 	}
 }

@@ -20,7 +20,7 @@ FormHelper::loadFieldClass('list');
  *
  * @since  1.0
  */
-class LanguagepackFormFieldJoomlaversion extends JFormFieldList
+class LanguagepackFormFieldApplication extends JFormFieldList
 {
 	/**
 	 * The form field type.
@@ -28,7 +28,7 @@ class LanguagepackFormFieldJoomlaversion extends JFormFieldList
 	 * @var    string
 	 * @since  1.0
 	 */
-	public $type = 'Joomlaversion';
+	public $type = 'Application';
 
 	/**
 	 * Cached array of the table data.

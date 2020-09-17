@@ -12,7 +12,7 @@
         >
             <field
                 name="application_id"
-                type="Languagepack.Joomlaversion"
+                type="Languagepack.Application"
                 label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
                 required="true"
             />
