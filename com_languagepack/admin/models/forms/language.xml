@@ -38,6 +38,7 @@
 			name="source_id"
 			type="Languagepack.Source"
 			label="COM_LANGUAGEPACK_LANGUAGE_SOURCE_LABEL"
+			default="3"
 		/>
 		<field
 			name="application_id"
