@@ -51,38 +51,38 @@
 			label="COM_LANGUAGEPACK_LANGUAGE_ARS_CATEGORY_LABEL"
 		/>
 		<field
-            name="coordinator"
-            type="text"
-            label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_LABEL"
-            size="40"
-            class="inputbox"
-            default=""
+			name="coordinator"
+			type="text"
+			label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_LABEL"
+			size="40"
+			class="inputbox"
+			default=""
 		/>
-        <field
-            name="coordinator_forum_id"
-            type="text"
-            label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_FORUM_ID_LABEL"
-            size="6"
-            class="inputbox"
-            default=""
-            validate="number"
-            filter="integer"
-        />
-        <field
-            name="coordinator_email"
-            type="text"
-            label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_EMAIL_LABEL"
-            size="40"
-            class="inputbox"
-            default=""
-        />
 		<field
-            name="website"
-            type="text"
-            label="COM_LANGUAGEPACK_LANGUAGE_WEBSITE_LABEL"
-            size="40"
-            class="inputbox"
-            default=""
+			name="coordinator_forum_id"
+			type="text"
+			label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_FORUM_ID_LABEL"
+			size="6"
+			class="inputbox"
+			default=""
+			validate="number"
+			filter="integer"
+		/>
+		<field
+			name="coordinator_email"
+			type="text"
+			label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_EMAIL_LABEL"
+			size="40"
+			class="inputbox"
+			default=""
+		/>
+		<field
+			name="website"
+			type="text"
+			label="COM_LANGUAGEPACK_LANGUAGE_WEBSITE_LABEL"
+			size="40"
+			class="inputbox"
+			default=""
 		/>
 	</fieldset>
 </form>
