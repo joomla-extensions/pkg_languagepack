@@ -88,5 +88,6 @@ class LanguagepackViewLanguages extends HtmlView
 		ToolbarHelper::addNew('language.add');
 		ToolbarHelper::editList('language.edit');
 		ToolbarHelper::deleteList('', 'language.delete');
+		ToolBarHelper::preferences('com_languagepack');
 	}
 }
