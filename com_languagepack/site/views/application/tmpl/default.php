@@ -61,19 +61,19 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
             <div class="item column-1" itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting">
                 <div class="page-header">
                     <h2 itemprop="name">
-                        <?php echo $language->name ?> Translation for <?php echo Text::_($this->applicationName); ?>
+	                    <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TRANSLATION_FOR', $language->name, Text::_($this->applicationName)) ?>
                     </h2>
                 </div>
-                <p><a name="<?php echo $language->lang_code ?>"></a><span class="contentheading"><?php echo $language->name ?> Translation</span></p>
-                <p>Language: <?php echo $language->name ?> (<?php echo $language->lang_code ?>)</p>
-                <p>Team Coordinator: <a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=<?php echo $language->coordinator_forum_link ?>"><?php echo $language->coordinator; ?></a></p>
-                <?php if (!empty($language->coordinator_email)) : ?><p>Contact: <?php echo $language->coordinator_email; ?></p><?php endif; ?>
-                <!-- TODO: This needs the Itemid in the URL to to work properly -->
-                <p>Download Language Pack: <a href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category=' . $language->ars_category . '&lang=' . $languageCode); ?>"> here</a></p>
+                <p><a name="<?php echo $language->lang_code ?>"></a><span class="contentheading"><?php echo Text::sprintf('COM_LANGUAGE_PACK_TRANSLATION_FOR', $language->name) ?></span></p>
+                <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_LANGUAGE', $language->name, $language->lang_code); ?></p>
+                <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u= ' . $language->coordinator_forum_link . '">' . $language->coordinator . '</a>') ?></p>
+                <?php if (!empty($language->coordinator_email)) : ?><p><?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?></p><?php endif; ?>
+                <!-- TODO: 1. Variable for the ItemId. 2. language string for the word here -->
+                <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD', Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720')); ?></p>
                 <?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
                     <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
                 <?php endif; ?>
-                <?php echo !empty($language->website) ? 'Website: <a href="' . $language->website . '">' . $language->website . '</a>' : ''; ?>
+                <?php echo !empty($language->website) ? Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') : ''; ?>
             </div>
         </div>
     </div>

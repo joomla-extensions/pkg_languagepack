@@ -16,6 +16,12 @@
                 label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
                 required="true"
             />
+            <field
+                name="application_id"
+                type="Languagepack.Application"
+                label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
+                required="true"
+            />
         </fieldset>
     </fields>
 </metadata>
