@@ -26,16 +26,16 @@ use Joomla\CMS\Language\Text;
 	<div class="languages-versions">
 		<?php foreach ($this->applications as $application): ?>
 		<div>
-            <div>
-                <h2>
-                    <a href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
-                        <?php echo Text::_($application->name); ?>
-                    </a>
-                </h2>
-                <div>
-                    <?php echo Text::_($application->description); ?>
-                </div>
-            </div>
+			<div>
+				<h2>
+					<a href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
+						<?php echo Text::_($application->name); ?>
+					</a>
+				</h2>
+				<div>
+					<?php echo Text::_($application->description); ?>
+				</div>
+			</div>
 		</div>
 		<?php endforeach; ?>
 	</div>
