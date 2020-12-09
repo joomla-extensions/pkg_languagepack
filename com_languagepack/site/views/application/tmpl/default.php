@@ -68,8 +68,8 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
                 <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_LANGUAGE', $language->name, $language->lang_code); ?></p>
                 <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u= ' . $language->coordinator_forum_link . '">' . $language->coordinator . '</a>') ?></p>
                 <?php if (!empty($language->coordinator_email)) : ?><p><?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?></p><?php endif; ?>
-                <!-- TODO: 1. Variable for the ItemId. 2. language string for the word here -->
-                <p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD', Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720')); ?></p>
+                <!-- TODO: 1. Variable for the ItemId -->
+                <a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720'); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD'); ?></a>
                 <?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
                     <a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
                 <?php endif; ?>
