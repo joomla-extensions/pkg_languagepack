@@ -78,7 +78,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 				<?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
 					<a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
 				<?php endif; ?>
-				<?php echo !empty($language->website) ? Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') : ''; ?>
+				<?php echo !empty($language->website) ? '<p>' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . '</p>' : ''; ?>
 			</div>
 		</div>
 	</div>
