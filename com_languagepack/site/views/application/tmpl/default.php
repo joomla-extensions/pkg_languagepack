@@ -73,12 +73,12 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 					<?php endif; ?>
 				</p>
 				<?php if (!empty($language->coordinator_email)) : ?><p><?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?></p><?php endif; ?>
+				<?php echo !empty($language->website) ? '<p>' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . '</p>' : ''; ?>
 				<!-- TODO: 1. Variable for the ItemId -->
 				<a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720'); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD'); ?></a>
 				<?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
 					<a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
 				<?php endif; ?>
-				<?php echo !empty($language->website) ? '<p>' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . '</p>' : ''; ?>
 			</div>
 		</div>
 	</div>
