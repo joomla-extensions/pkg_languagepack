@@ -56,29 +56,38 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 
 	<?php if (!empty($this->languages)) : ?>
 	<?php foreach ($this->languages as $language): ?>
-	<div class="items-row cols-1 row-0 row-fluid clearfix">
+	<div class="items-row cols-1 row-0 row-fluid clearfix language-block">
 		<div class="span12">
 			<div class="item column-1" itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting">
-				<div class="page-header">
+				<div class="page-header language-definition">
 					<h2 itemprop="name">
 						<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TRANSLATION_FOR', $language->name, Text::_($this->applicationName)) ?>
 					</h2>
 				</div>
-				<p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_LANGUAGE', $language->name, $language->lang_code); ?></p>
-				<p>
-					<?php if (!empty($language->coordinator_forum_id)) : ?>
-						<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=' . $language->coordinator_forum_id . '">' . $language->coordinator . '</a>'); ?>
-					<?php else: ?>
-						<?php echo $language->coordinator; ?>
+
+				<div class="language-information">
+					<p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_LANGUAGE', $language->name, $language->lang_code); ?>
+					<br>
+						<?php if (!empty($language->coordinator_forum_id)) : ?>
+							<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=' . $language->coordinator_forum_id . '">' . $language->coordinator . '</a>'); ?>
+						<?php else: ?>
+							<?php echo $language->coordinator; ?>
+						<?php endif; ?>
+					<br>
+					<?php if (!empty($language->coordinator_email)) : ?>
+						<?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?>
 					<?php endif; ?>
-				</p>
-				<?php if (!empty($language->coordinator_email)) : ?><p><?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?></p><?php endif; ?>
-				<?php echo !empty($language->website) ? '<p>' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . '</p>' : ''; ?>
+					<?php echo !empty($language->website) ? ' ' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . ' ' : ''; ?>
+					</p>
+				</div>
+
 				<!-- TODO: 1. Variable for the ItemId -->
-				<a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720'); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD'); ?></a>
-				<?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
-					<a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
-				<?php endif; ?>
+				<div class="language-buttons">
+						<a class="btn btn-success" href="<?php echo Route::_('index.php?option=com_ars&view=Releases&category_id=' . $language->ars_category . '&Itemid=720'); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_DOWNLOAD'); ?></a>
+					<?php if (in_array($language->group_id, Factory::getUser()->getAuthorisedGroups())): ?>
+						<a class="btn btn-warning" href="<?php echo Route::_('index.php?option=com_languagepack&task=release.add&langid=' . $language->id . '&application_id=' . $this->applicationId); ?>"><?php echo Text::sprintf('COM_LANGUAGE_PACK_LANGUAGE_CREATE_A_RELEASE'); ?></a>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
 	</div>
