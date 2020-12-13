@@ -19,6 +19,23 @@ use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
 
+// Ensure jQuery exists TODO: Use native JS
+HTMLHelper::_('jquery.framework');
+
+$document = Factory::getDocument();
+$document->addScriptDeclaration('
+	jQuery(document).ready(function ($){
+		$(\'#language_picker\').change(function(){
+			$(\'.language-block\').hide();
+			if ($(this).val() === \'ALL\'){
+				$(\'.language-block\').show();
+			} else {
+				$(\'.language-block.\' + $(this).val()).show();
+			}
+		});
+	});
+');
+
 $lang = Factory::getLanguage();
 $languages = LanguageHelper::getLanguages('lang_code');
 $languageCode = $languages[ $lang->getTag() ]->sef;
@@ -28,15 +45,6 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 	<h1>
 		<?php echo Text::sprintf('COM_LANGUAGE_PACK_TRANSLATIONS_AVAILABLE_IN', Text::_($this->applicationName)) ?>
 	</h1>
-	<?php if (!empty($this->languages)) : ?>
-	<p>
-	<?php $i = 1; // Counter so we don't show a pipe after the last language ?>
-	<?php foreach ($this->languages as $language): ?>
-		<a href="#<?php echo $language->lang_code ?>"><?php echo $language->name ?></a><?php if (count($this->languages) !== $i): ?> &#124; <?php endif; ?>
-		<?php $i++; ?>
-	<?php endforeach;?>
-	</p>
-	<?php endif; ?>
 
 	<?php if (!empty($this->extraInfo)) : ?>
 	<div class="accordion" id="accordion">
@@ -58,8 +66,21 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 	<?php endif; ?>
 
 	<?php if (!empty($this->languages)) : ?>
+        <label for="language_picker"><?php echo Text::sprintf('COM_LANGUAGE_PACK_CHOOSE_TRANSLATION_LABEL'); ?></label>
+        <select id="language_picker">
+            <option value="ALL"><?php echo Text::sprintf('COM_LANGUAGE_PACK_VIEW_ALL_TRANSLATIONS'); ?></option>
+            <?php foreach ($this->languages as $language): ?>
+                <option value="<?php echo $language->lang_code;?>"><?php echo $language->name;?></option>
+            <?php endforeach;?>
+        </select>
+
+        <script type="text/javascript">
+        </script>
+	<?php endif; ?>
+
+	<?php if (!empty($this->languages)) : ?>
 	<?php foreach ($this->languages as $language): ?>
-	<div class="items-row cols-1 row-0 row-fluid clearfix language-block">
+	<div class="items-row cols-1 row-0 row-fluid clearfix language-block <?php echo $language->lang_code; ?>">
 		<div class="span12">
 			<div class="item column-1" itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting">
 				<div class="page-header language-definition">
