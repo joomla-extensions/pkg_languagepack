@@ -48,14 +48,14 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 	<?php if (!empty($this->languages)) : ?>
         <label for="language_picker">Choose a Language Translation: </label>
         <select id="language_picker">
-            <option value="ALL">Text::sprintf('COM_LANGUAGE_PACK_VIEW_ALL_TRANSLATIONS)</option>
+            <option value="ALL"><?php echo Text::sprintf('COM_LANGUAGE_PACK_VIEW_ALL_TRANSLATIONS'); ?></option>
             <?php foreach ($this->languages as $language): ?>
-                <option value="<?php echo $language->lang_code;?>>"><?php echo $language->name;?></option>
+                <option value="<?php echo $language->lang_code;?>"><?php echo $language->name;?></option>
             <?php endforeach;?>
         </select>
 
         <script type="text/javascript">
-            $(function() {
+            jQuery(function($) {
                 $('#language_picker').change(function(){
                     $('.language-block').hide();
                     if ($(this).val() === 'ALL'){
