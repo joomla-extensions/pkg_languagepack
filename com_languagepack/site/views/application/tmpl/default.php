@@ -12,9 +12,13 @@ defined('_JEXEC') or die;
 /** @var  $this  LanguagepackViewApplication */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+
+// Ensure jQuery exists TODO: Use native JS
+HTMLHelper::_('jquery.framework');
 
 $lang = Factory::getLanguage();
 $languages = LanguageHelper::getLanguages('lang_code');
