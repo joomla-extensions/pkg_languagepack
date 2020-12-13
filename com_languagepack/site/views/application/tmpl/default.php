@@ -46,7 +46,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 	<?php endif; ?>
 
 	<?php if (!empty($this->languages)) : ?>
-        <label for="language_picker">Choose a Language Translation: </label>
+        <label for="language_picker"><?php echo Text::sprintf('COM_LANGUAGE_PACK_CHOOSE_TRANSLATION_LABEL'); ?></label>
         <select id="language_picker">
             <option value="ALL"><?php echo Text::sprintf('COM_LANGUAGE_PACK_VIEW_ALL_TRANSLATIONS'); ?></option>
             <?php foreach ($this->languages as $language): ?>
