@@ -11,8 +11,11 @@ defined('_JEXEC') or die;
 
 /** @var  $this  LanguagepackViewApplications */
 
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
+
+HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
 ?>
 
 <div class="languages">

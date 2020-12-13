@@ -48,7 +48,8 @@ This component assumes that you have an existing install of ARS on your system. 
 this component is installed else the foreign key checks will fail.
 
 To build this component run `zip -r com_languagepack.zip com_languagepack` then run
-`zip pkg_languagepack.zip pkg_languagepack.xml com_languagepack.zip`
+`zip pkg_languagepack.zip pkg_languagepack.xml com_languagepack.zip` or for an all in 1 command:
+`rm -f pkg_languagepack.zip && zip -r com_languagepack.zip com_languagepack && zip pkg_languagepack.zip pkg_languagepack.xml com_languagepack.zip && rm com_languagepack.zip`
 
 Then install this into Joomla through the extension manager.
 
