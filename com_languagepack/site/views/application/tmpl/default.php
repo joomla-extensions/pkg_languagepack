@@ -12,9 +12,12 @@ defined('_JEXEC') or die;
 /** @var  $this  LanguagepackViewApplication */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+
+HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
 
 $lang = Factory::getLanguage();
 $languages = LanguageHelper::getLanguages('lang_code');
