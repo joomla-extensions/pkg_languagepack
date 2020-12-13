@@ -18,6 +18,9 @@
 		<folder>models</folder>
 		<folder>views</folder>
 	</files>
+	<media folder="media" destination="com_languagepack">
+		<folder>css</folder>
+	</media>
 	<install>
 		<sql>
 			<file charset="utf8" driver="mysql">sql/install/install_mysql.sql</file>
