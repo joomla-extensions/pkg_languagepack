@@ -20,6 +20,9 @@ use Joomla\CMS\Router\Route;
 // Ensure jQuery exists TODO: Use native JS
 HTMLHelper::_('jquery.framework');
 
+// Load our stylesheet
+HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
+
 $lang = Factory::getLanguage();
 $languages = LanguageHelper::getLanguages('lang_code');
 $languageCode = $languages[ $lang->getTag() ]->sef;
