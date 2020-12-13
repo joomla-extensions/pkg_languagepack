@@ -17,11 +17,24 @@ use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
+HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
+
 // Ensure jQuery exists TODO: Use native JS
 HTMLHelper::_('jquery.framework');
 
-// Load our stylesheet
-HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version' => 'auto', 'relative' => true));
+$document = Factory::getDocument();
+$document->addScriptDeclaration('
+	jQuery(document).ready(function ($){
+		$(\'#language_picker\').change(function(){
+			$(\'.language-block\').hide();
+			if ($(this).val() === \'ALL\'){
+				$(\'.language-block\').show();
+			} else {
+				$(\'.language-block.\' + $(this).val()).show();
+			}
+		});
+	});
+');
 
 $lang = Factory::getLanguage();
 $languages = LanguageHelper::getLanguages('lang_code');
@@ -62,16 +75,6 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
         </select>
 
         <script type="text/javascript">
-            jQuery(function($) {
-                $('#language_picker').change(function(){
-                    $('.language-block').hide();
-                    if ($(this).val() === 'ALL'){
-                        $('.language-block').show();
-                    } else {
-                        $('.language-block.' + $(this).val()).show();
-                    }
-                });
-            });
         </script>
 	<?php endif; ?>
 
