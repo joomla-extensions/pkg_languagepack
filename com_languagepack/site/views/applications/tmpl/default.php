@@ -24,7 +24,7 @@ HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version'
 		  <?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS') ?>
 	  </h1>
   </div>
-  <div><p class="applications-info"><?php echo Text::_('COM_LANGUAGE_PACK_APPLICATIONS_INFO'); ?></p></div>
+  <div><p class="applications-info"><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATIONS_INFO', $this->numberOfLanguages); ?></p></div>
 	<?php if (!empty($this->applications)) : ?>
 	<div class="languages-versions">
 		<?php foreach ($this->applications as $application): ?>

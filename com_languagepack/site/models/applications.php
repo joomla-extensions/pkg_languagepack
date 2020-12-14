@@ -23,7 +23,7 @@ class LanguagepackModelApplications extends ListModel
 	 *
 	 * @return  \JDatabaseQuery  A \JDatabaseQuery object to retrieve the data set.
 	 *
-	 * @since   1.6
+	 * @since   1.0
 	 */
 	protected function getListQuery()
 	{
@@ -32,5 +32,24 @@ class LanguagepackModelApplications extends ListModel
 		return $db->getQuery(true)
 			->select('*')
 			->from($db->quoteName('#__languagepack_applications'));
+	}
+
+	/**
+	 * Method to count the number of unique languages managed by this component.
+	 *
+	 * @return  integer
+	 *
+	 * @since   1.0
+	 */
+	public function getUniqueLanguages()
+	{
+		$db = $this->getDbo();
+
+		$query = $db->getQuery(true)
+			->select('count(DISTINCT(lang_code))')
+			->from($db->quoteName('#__languagepack_languages'));
+
+		$db->setQuery($query);
+		return (int) $db->loadResult();
 	}
 }

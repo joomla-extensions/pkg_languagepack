@@ -26,6 +26,13 @@ class LanguagepackViewApplications extends HtmlView
 	protected $applications = array();
 
 	/**
+	 * Number of unique languages managed by this component
+	 *
+	 * @var  integer
+	 */
+	protected $numberOfLanguages = 0;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -37,6 +44,7 @@ class LanguagepackViewApplications extends HtmlView
 		/** @var \LanguagepackModelApplications $model */
 		$model = $this->getModel();
 		$this->applications = $model->getItems();
+		$this->numberOfLanguages = $model->getUniqueLanguages();
 
 		if ($this->applications === false)
 		{
