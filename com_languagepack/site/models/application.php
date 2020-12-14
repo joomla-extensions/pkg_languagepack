@@ -52,7 +52,10 @@ class LanguagepackModelApplication extends ListModel
 		return $db->getQuery(true)
 			->select('*')
 			->from($db->quoteName('#__languagepack_languages'))
-			->where($db->quoteName('application_id') . ' = ' . $this->getState('application_id'));
+			->where($db->quoteName('application_id') . ' = ' . $this->getState('application_id'))
+			->order(
+				$db->quoteName($db->escape($this->getState('list.ordering', 'name'))) . ' ' . $db->escape($this->getState('list.direction', 'ASC'))
+			);
 	}
 
 	/**
