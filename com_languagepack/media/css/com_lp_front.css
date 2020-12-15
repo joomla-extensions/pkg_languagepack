@@ -1,8 +1,5 @@
 /* Language Packs Component */
 div.languages .applications-info {
-	color: #468847;
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
   	padding: 5px;
 }
 div.languages div.languages-versions {
@@ -22,12 +19,12 @@ div.languages div.languages-versions::before, div.languages div.languages-versio
 div.languages div.languages-versions > div {
     min-height: unset !important;
     width: auto !important;
-    display: flex;
     flex-basis: 30%;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     margin: 3px;
+    margin-bottom: 20px;
     float: none;
 }
 
