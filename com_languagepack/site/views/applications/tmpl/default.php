@@ -36,7 +36,7 @@ HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version'
 					</a>
 				</h2>
 				<div>
-					<?php echo Text::_($application->description); ?>
+					<?php echo Text::sprintf($application->description, $application->languages_count); ?>
 				</div>
 			</div>
 		</div>

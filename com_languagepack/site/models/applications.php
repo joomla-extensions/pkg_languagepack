@@ -30,8 +30,11 @@ class LanguagepackModelApplications extends ListModel
 		$db = $this->getDbo();
 
 		return $db->getQuery(true)
-			->select('*')
-			->from($db->quoteName('#__languagepack_applications'));
+			->select('a.*')
+			->select('count(DISTINCT(b.lang_code)) AS languages_count')
+			->leftJoin($db->quoteName('#__languagepack_languages', 'b') . ' ON ' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.application_id'))
+			->from($db->quoteName('#__languagepack_applications', 'a'))
+			->group($db->quoteName('a.id'));
 	}
 
 	/**
