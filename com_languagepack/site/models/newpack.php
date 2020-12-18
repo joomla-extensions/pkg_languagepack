@@ -73,6 +73,27 @@ class LanguagepackModelNewpack extends AdminModel
 	}
 
 	/**
+	 * Method to get the record form.
+	 *
+	 * @return  \stdClass|boolean  Array of data or false on failure
+	 *
+	 * @since   1.0
+	 */
+	public function getLanguageInformation()
+	{
+		$db = $this->getDbo();
+
+		$query = $db->getQuery(true)
+			->select($db->quoteName(['name', 'source_id']))
+			->from($db->quoteName('#__languagepack_languages'))
+			->where($db->quoteName('id') . ' = ' . (int) $this->getState('language_id'));
+
+		$db->setQuery($query);
+
+		return $db->loadObject();
+	}
+
+	/**
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return  mixed  The data for the form.

@@ -35,18 +35,11 @@ class LanguagepackViewNewpack extends HtmlView
 	protected $item;
 
 	/**
-	 * The language primary key
+	 * The information about the language
 	 *
-	 * @var  integer
+	 * @var  \stdClass
 	 */
-	protected $langId;
-
-	/**
-	 * The source ID of the language
-	 *
-	 * @var  integer
-	 */
-	protected $sourceId;
+	protected $languageInfo;
 
 	/**
 	 * Execute and display a template script.
@@ -61,10 +54,7 @@ class LanguagepackViewNewpack extends HtmlView
 		$model = $this->getModel();
 		$this->form = $model->getForm();
 		$this->item = $model->getItem();
-		$this->langId = $model->getState('language_id');
-
-		// TODO: Make this dynamic!
-		$this->sourceId = 3;
+		$this->languageInfo = $model->getLanguageInformation();
 
 		return parent::display($tpl);
 	}
