@@ -1,4 +1,5 @@
 /* Language Packs Component */
+/* Applications view */
 div.languages .applications-info {
   	padding: 5px;
 }
@@ -36,4 +37,15 @@ div.languages div.languages-versions h2 {
 }
 div.languages div.languages-versions h2 a {
     color: #fff;
+}
+
+/* Application view */
+div.languages div.language-block {
+    margin-bottom: 22px;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+div.languages div.language-block .page-header {
+    border: none;
 }
