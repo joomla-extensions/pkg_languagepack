@@ -73,8 +73,8 @@ INSERT INTO `#__languagepack_sources` (`const`, `name`) VALUES
 -- Populate data into the Joomla Versions table
 --
 INSERT INTO `#__languagepack_applications` (`name`, `description`, `alias`, `ars_environment`, `ars_visual_group`) VALUES
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0_DESC', 'translation10', 10, 7),
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_0_DESC', 'translation10', 10, 6),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_1_5_DESC', 'translation15', 3, 2),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_DESC', 'translation25', 2, 3),
 ('COM_LANGUAGE_PACK_JOOMLA_VERSION_3_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_3_x_DESC', 'translation3', 1, 4),
-('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_4_x_DESC', 'translation4', 11, 8);
+('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_X', 'COM_LANGUAGE_PACK_JOOMLA_VERSION_4_x_DESC', 'translation4', 11, 7);
