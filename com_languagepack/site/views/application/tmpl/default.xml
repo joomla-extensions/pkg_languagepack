@@ -16,10 +16,16 @@
                 label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
                 required="true"
             />
+        </fieldset>
+    </fields>
+
+    <!-- Add fields to the parameters object for the layout. -->
+    <fields name="params">
+        <fieldset name="ars" label="COM_LANGUAGE_PACK_ARS_SETTINGS_LABEL">
             <field
-                name="application_id"
-                type="Languagepack.Application"
-                label="COM_LANGUAGE_PACK_JOOMLA_VERSION_ID"
+                name="ars_menu_item"
+                type="MenuItem"
+                label="COM_LANGUAGE_PACK_ARS_MENU_ITEM"
                 required="true"
             />
         </fieldset>

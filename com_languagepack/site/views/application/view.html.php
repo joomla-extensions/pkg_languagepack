@@ -40,6 +40,13 @@ class LanguagepackViewApplication extends HtmlView
 	protected $applicationId;
 
 	/**
+	 * The application id we are listing languages for
+	 *
+	 * @var  integer
+	 */
+	protected $arsMenuId = 0;
+
+	/**
 	 * Extra information each array contains a key title and body to be rendered
 	 *
 	 * @var  string[][]
@@ -68,6 +75,7 @@ class LanguagepackViewApplication extends HtmlView
 		$this->applicationName = $model->getApplicationName();
 		$this->languages = $model->getItems();
 		$this->extraInfo = $model->getExtraInfo();
+		$this->arsMenuId = $model->getState()->get('params')->get('ars_menu_item', 0);
 
 		if ($this->languages === false)
 		{

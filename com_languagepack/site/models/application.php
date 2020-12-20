@@ -32,8 +32,9 @@ class LanguagepackModelApplication extends ListModel
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		// TODO: Respect the menu type if this is a language page
-		$this->setState('application_id', Factory::getApplication()->input->getInt('application_id'));
+		$app = Factory::getApplication();
+		$this->setState('params', $app->getParams());
+		$this->setState('application_id', $app->input->getInt('application_id'));
 
 		parent::populateState($ordering, $direction);
 	}
