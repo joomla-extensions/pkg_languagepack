@@ -69,6 +69,7 @@ use Joomla\CMS\Router\Route;
 		<?php endif; ?>
 		</tbody>
 	</table>
+	<?php echo $this->pagination->getListFooter(); ?>
     <input type="hidden" name="task" value=""/>
     <input type="hidden" name="boxchecked" value="0"/>
 	<?php echo HTMLHelper::_('form.token'); ?>
