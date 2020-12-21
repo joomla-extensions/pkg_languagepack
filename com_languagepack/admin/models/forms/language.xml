@@ -32,6 +32,7 @@
 		<field
 			name="group_id"
 			type="UsergroupList"
+			default="8"
 			label="COM_LANGUAGEPACK_LANGUAGE_GROUP_LABEL"
 		/>
 		<field
