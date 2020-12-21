@@ -37,6 +37,9 @@ class LanguagepackModelApplication extends ListModel
 		$this->setState('application_id', $app->input->getInt('application_id'));
 
 		parent::populateState($ordering, $direction);
+
+		// Override the list model to show all languages in the frontend
+		$this->setState('list.limit', 0);
 	}
 
 	/**
