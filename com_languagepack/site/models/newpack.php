@@ -288,7 +288,6 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 		catch (Exception $e)
 		{
-			// TODO: Rollback our DB Save action
 			$this->setError($e->getMessage());
 
 			return false;
@@ -303,7 +302,7 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 		catch (Exception $e)
 		{
-			// TODO: Rollback our DB Save action and the item creation
+			// TODO: Rollback the item creation?
 			$this->setError($e->getMessage());
 
 			return false;
@@ -314,6 +313,7 @@ class LanguagepackModelNewpack extends AdminModel
 		unset($data['joomla_version']);
 		unset($data['language_pack_version']);
 
+		// TODO: Improve actions if this fails. Rollback the ARS release/item creation?
 		return parent::save($data);
 	}
 
