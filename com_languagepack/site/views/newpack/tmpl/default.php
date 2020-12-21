@@ -51,7 +51,7 @@ Factory::getDocument()->addScriptDeclaration("
 			<?php echo Text::_('JCANCEL'); ?>
 		</button>
 
-		<?php echo $this->form->renderField('langId'); ?>
+		<?php echo $this->form->renderField('language_id'); ?>
 		<input type="hidden" name="task" value="" />
 		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>

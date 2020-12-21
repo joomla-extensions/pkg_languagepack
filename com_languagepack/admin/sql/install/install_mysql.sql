@@ -48,17 +48,18 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
 
 --
 -- Table structure for table `#__languagepack_releases`
--- TODO: Foreign Key on ARS Releases
--- TODO: Unique key on release name. Release Name should allow longer name
 --
 CREATE TABLE IF NOT EXISTS `#__languagepack_releases` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   -- int(11) because it references our users table. This is stupid and should be fixed in J4
   `maintainer_id` int(11) NOT NULL,
-  `release_name` VARCHAR(5) NOT NULL,
-  `ars_release_id` int(10) unsigned NOT NULL,
+  `language_id` int(10) unsigned NOT NULL,
+  `release_name` VARCHAR(10) NOT NULL,
+  `ars_release_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_releases_maintainer_id` FOREIGN KEY (`maintainer_id`) REFERENCES `#__users` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_releases_language_id` FOREIGN KEY (`language_id`) REFERENCES `#__languagepack_languages` (`id`)  ON DELETE NO ACTION
+  CONSTRAINT `fk_languagepack_releases_ars_release_id` FOREIGN KEY (`ars_release_id`) REFERENCES `#__ars_releases` (`id`)  ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
 --

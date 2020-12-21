@@ -111,7 +111,7 @@ class LanguagepackModelNewpack extends AdminModel
 			/** @var \Joomla\CMS\Object\CMSObject $data */
 			$data = $this->getItem();
 
-			$data->set('langId', $this->getState('language_id'));
+			$data->set('language_id', $this->getState('language_id'));
 		}
 
 		$this->preprocessData('com_languagepack.newpack', $data);
@@ -151,7 +151,7 @@ class LanguagepackModelNewpack extends AdminModel
 		parent::preprocessForm($form, $data, $group);
 
 		$languageTable = $this->getTable('Language');
-		$loadResult = $languageTable->load($data->langId);
+		$loadResult = $languageTable->load($data->language_id);
 
 		if ($loadResult && (int) $languageTable->source_id === 3)
 		{
@@ -184,7 +184,7 @@ class LanguagepackModelNewpack extends AdminModel
 		$data['maintainer_id'] = Factory::getUser()->id;
 
 		$languageTable = $this->getTable('Language');
-		$langLoadResult = $languageTable->load($data['langId']);
+		$langLoadResult = $languageTable->load($data['language_id']);
 
 		if (!$langLoadResult)
 		{
@@ -282,9 +282,6 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
-		// Save the data to the DB first then save to ARS
-		$success = parent::save($data);
-
 		try
 		{
 			$releaseData = $releasesModel->save($arsReleaseData);
@@ -312,7 +309,12 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
-		return $success;
+		$data['release_name'] = $data['joomla_version'] . '.' . $data['language_pack_version'];
+		$data['ars_release_id'] = $arsItemData['release_id'];
+		unset($data['joomla_version']);
+		unset($data['language_pack_version']);
+
+		return parent::save($data);
 	}
 
 	/**

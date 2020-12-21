@@ -22,7 +22,7 @@
             step="1"
         />
         <field
-            name="langId"
+            name="language_id"
             type="hidden"
         />
     </fieldset>
