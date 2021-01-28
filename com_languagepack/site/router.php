@@ -171,11 +171,16 @@ class LanguagepackRouter extends RouterView
 	 */
 	public function getNewpackId($segment, $query)
 	{
-		$query = $this->db->getQuery(true);
-		$query->select($this->db->quoteName('id'))
+		$dbQuery = $this->db->getQuery(true);
+		$dbQuery->select($this->db->quoteName('id'))
 			->from($this->db->quoteName('#__languagepack_languages'))
-			->where('alias = ' . $this->db->quote($segment));
-		$this->db->setQuery($query);
+			->where(
+				[
+					$this->db->quoteName('alias') . ' = ' . $this->db->quote($segment),
+					$this->db->quoteName('application_id') . ' = ' . (int) $query['application_id'],
+				]
+			);;
+		$this->db->setQuery($dbQuery);
 
 		return (int) $this->db->loadResult();
 	}
