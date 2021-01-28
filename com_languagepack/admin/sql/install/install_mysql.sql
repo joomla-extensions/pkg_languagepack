@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_languages` (
 
 --
 -- Table structure for table `#__languagepack_releases`
+-- This is mainly just for auditing who made a release so doesn't include data imported from JoomlaCode. Maybe
+-- eventually make this an action logs plugin?
 --
 CREATE TABLE IF NOT EXISTS `#__languagepack_releases` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
