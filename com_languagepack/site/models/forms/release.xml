@@ -10,6 +10,7 @@
         <field
             name="joomla_version"
             type="text"
+            required="true"
             label="COM_LANGUAGEPACK_RELEASE_JOOMLA_VERSION_LABEL"
         />
         <field
