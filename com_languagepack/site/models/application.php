@@ -65,7 +65,7 @@ class LanguagepackModelApplication extends ListModel
 
 		if (!$user->authorise('core.edit', 'com_languagepack'))
 		{
-			$query->where('a.state = ' . 1);
+			$query->where('state = ' . 1);
 		}
 
 		return $query;
