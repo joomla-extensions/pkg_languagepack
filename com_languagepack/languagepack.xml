@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>COM_LANGUAGE_PACK_XML_DESCRIPTION</description>
 	<files folder="site">
 		<filename>languagepack.php</filename>
@@ -31,6 +31,11 @@
 			<file charset="utf8" driver="mysql">sql/install/uninstall_mysql.sql</file>
 		</sql>
 	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates</schemapath>
+		</schemas>
+	</update>
 	<administration>
         <menu link='index.php?option=com_languagepack'>COM_LANGUAGEPACK_MAIN_MENU</menu>
 		<files folder="admin">

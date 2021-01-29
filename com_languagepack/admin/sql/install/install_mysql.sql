@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_applications` (
   `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
   `alias` VARCHAR(100) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
+  `state` INT(1) DEFAULT 1,
+  `locked` INT(1) DEFAULT 0,
   `description` VARCHAR(100) NOT NULL,
   `ars_environment` bigint(20) NOT NULL,
   `ars_visual_group` bigint(20) NOT NULL,
