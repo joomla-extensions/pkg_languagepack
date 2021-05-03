@@ -87,5 +87,13 @@
 			class="inputbox"
 			default=""
 		/>
+		<field
+			name="state"
+			type="list"
+			label="JSTATUS"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
 	</fieldset>
 </form>
