@@ -53,13 +53,22 @@ class LanguagepackModelApplication extends ListModel
 	{
 		$db = $this->getDbo();
 
-		return $db->getQuery(true)
+		$query = $db->getQuery(true)
 			->select('*')
 			->from($db->quoteName('#__languagepack_languages'))
 			->where($db->quoteName('application_id') . ' = ' . $this->getState('application_id'))
 			->order(
 				$db->quoteName($db->escape($this->getState('list.ordering', 'name'))) . ' ' . $db->escape($this->getState('list.direction', 'ASC'))
 			);
+
+		$user = Factory::getUser();
+
+		if (!$user->authorise('core.edit', 'com_languagepack'))
+		{
+			$query->where('state = ' . 1);
+		}
+
+		return $query;
 	}
 
 	/**

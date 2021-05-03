@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 
 /**
@@ -29,12 +30,22 @@ class LanguagepackModelApplications extends ListModel
 	{
 		$db = $this->getDbo();
 
-		return $db->getQuery(true)
+		// return $db->getQuery(true)
+		$query = $db->getQuery(true)
 			->select('a.*')
 			->select('count(DISTINCT(b.lang_code)) AS languages_count')
 			->leftJoin($db->quoteName('#__languagepack_languages', 'b') . ' ON ' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.application_id'))
 			->from($db->quoteName('#__languagepack_applications', 'a'))
 			->group($db->quoteName('a.id'));
+
+		$user = Factory::getUser();
+
+		if (!$user->authorise('core.edit', 'com_languagepack'))
+		{
+			$query->where('a.state = ' . 1);
+		}
+
+		return $query;
 	}
 
 	/**
