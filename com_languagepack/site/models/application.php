@@ -54,18 +54,20 @@ class LanguagepackModelApplication extends ListModel
 		$db = $this->getDbo();
 
 		$query = $db->getQuery(true)
-			->select('*')
-			->from($db->quoteName('#__languagepack_languages'))
-			->where($db->quoteName('application_id') . ' = ' . $this->getState('application_id'))
+			->select('a.*')
+			->from($db->quoteName('#__languagepack_languages', 'a'))
+			->rightJoin($db->quoteName('#__languagepack_applications', 'b') . ' ON ' . $db->quoteName('b.id') . ' = ' . $db->quoteName('a.application_id'))
+			->where($db->quoteName('a.application_id') . ' = ' . $this->getState('application_id'))
 			->order(
-				$db->quoteName($db->escape($this->getState('list.ordering', 'name'))) . ' ' . $db->escape($this->getState('list.direction', 'ASC'))
+				$db->escape($db->quoteName('a.' . $this->getState('list.ordering', 'name'))) . ' ' . $db->escape($this->getState('list.direction', 'ASC'))
 			);
 
 		$user = Factory::getUser();
 
 		if (!$user->authorise('core.edit', 'com_languagepack'))
 		{
-			$query->where('state = ' . 1);
+			$query->where('a.state = ' . 1);
+			$query->where('b.state = ' . 1);
 		}
 
 		return $query;
