@@ -40,7 +40,7 @@ class LanguagepackController extends BaseController
 	 */
 	public function display($cachable = true, $urlparams = array())
 	{
-		$urlparams += array('langid' => 'INT', 'application_id' => 'INT');
+		$urlparams += array('langid' => 'INT', 'application_id' => 'INT', 'cms_version' => 'INT', 'language_code' => 'STRING');
 
 		$vName = $this->input->getCmd('view', $this->default_view);
 
