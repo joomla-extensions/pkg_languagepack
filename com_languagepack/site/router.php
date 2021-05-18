@@ -57,6 +57,10 @@ class LanguagepackRouter extends RouterView
 
 		$this->registerView($newPack);
 
+		$export = (new RouterViewConfiguration('export'))
+			->setKey('cms_version');
+		$this->registerView($export);
+
 		parent::__construct($app, $menu);
 
 		$this->attachRule(new MenuRules($this));
