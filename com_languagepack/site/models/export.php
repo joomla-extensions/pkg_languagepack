@@ -91,13 +91,13 @@ class LanguagepackModelExport extends ListModel
 		// we must have a CMS version
 		if (!$cmsVersion)
 		{
-			$this->setError(Text::_('CMS version required for export'));
+			$this->setError(Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_REQUIRED'));
 
 			return false;
 		}
 		elseif (!isset($this->mapping[$cmsVersion]))
 		{
-			$this->setError(Text::_('CMS version branch not found'));
+			$this->setError(Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_NOT_FOUND'));
 
 			return false;
 		}

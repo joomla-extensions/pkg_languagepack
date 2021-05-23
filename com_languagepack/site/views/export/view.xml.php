@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Language\Text;
 
 /**
  * Export view class
@@ -44,7 +45,7 @@ class LanguagepackViewExport extends HtmlView
 		elseif (!$exportData || !isset($exportData['total'])
 			|| !$exportData['total'])
 		{
-			echo $this->renderXmlError(['No Data Found']);
+			echo $this->renderXmlError([Text::_('COM_LANGUAGE_PACK_EXPORT_NO_DATA_FOUND')]);
 
 			return;
 		}
