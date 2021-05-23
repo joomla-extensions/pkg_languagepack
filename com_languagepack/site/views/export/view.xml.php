@@ -25,7 +25,7 @@ class LanguagepackViewExport extends HtmlView
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
-	 * @return  mixed  A string if successful, otherwise an Error object.
+	 * @return  string  A XML if successful, otherwise an XML Error.
 	 */
 	public function display($tpl = null)
 	{
@@ -37,11 +37,16 @@ class LanguagepackViewExport extends HtmlView
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			echo $this->renderXmlError($errors);
+
+			return;
 		}
-		elseif (!$exportData || !isset($exportData['total']) || !$exportData['total'])
+		elseif (!$exportData || !isset($exportData['total'])
+			|| !$exportData['total'])
 		{
-			throw new Exception('No Data Found', 500);
+			echo $this->renderXmlError(['No Data Found']);
+
+			return;
 		}
 
 		$cmsVersion   = $model->getState(
@@ -170,6 +175,34 @@ class LanguagepackViewExport extends HtmlView
 
 		$dom = new DOMDocument;
 		$dom->loadXML($export->asXML());
+		$dom->formatOutput = true;
+
+		return $dom->saveXML();
+	}
+
+	/**
+	 * Render the XML error. (simple)
+	 *
+	 * @param   array  $messages  The error messages
+	 *
+	 * @return  string
+	 *
+	 * @since  1.0
+	 */
+	protected function renderXmlError(array $messages)
+	{
+		$errors = new SimpleXMLElement(
+			'<?xml version="1.0" encoding="utf-8"?><errors />'
+		);
+
+		foreach ($messages as $message)
+		{
+			$error          = $errors->addChild('error');
+			$error->message = $message;
+		}
+
+		$dom = new DOMDocument;
+		$dom->loadXML($errors->asXML());
 		$dom->formatOutput = true;
 
 		return $dom->saveXML();
