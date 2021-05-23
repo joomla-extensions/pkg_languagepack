@@ -39,7 +39,7 @@ class LanguagepackViewExport extends HtmlView
 		{
 			throw new Exception(implode("\n", $errors), 500);
 		}
-		elseif (!$exportData)
+		elseif (!$exportData || !isset($exportData['total']) || !$exportData['total'])
 		{
 			throw new Exception('No Data Found', 500);
 		}
