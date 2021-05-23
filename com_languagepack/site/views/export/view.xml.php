@@ -57,7 +57,8 @@ class LanguagepackViewExport extends HtmlView
 		);
 
 		// This document should always be downloaded
-		$this->document->setDownload(true);
+		// not sure what is the best choice here (lets see)
+		// $this->document->setDownload(true);
 
 		// Set the document name
 		if ($languageCode)
