@@ -20,6 +20,27 @@ use Joomla\CMS\MVC\Model\ListModel;
 class LanguagepackModelLanguages extends ListModel
 {
 	/**
+	 * Constructor.
+	 *
+	 * @param   array  $config  An optional associative array of configuration settings.
+	 *
+	 * @since   1.6
+	 * @see     JControllerLegacy
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields']))
+		{
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'name', 'a.name',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
@@ -74,6 +95,22 @@ class LanguagepackModelLanguages extends ListModel
 //			$applicationIdInts = implode(',', $applicationId);
 //			$query->where($db->quoteName('a.application_id') . ' IN (' . $applicationIdInts . ')');
 //		}
+
+		// Filter by search in title.
+		$search = $this->getState('filter.search');
+
+		if (!empty($search))
+		{
+			if (stripos($search, 'id:') === 0)
+			{
+				$query->where('a.id = ' . (int) substr($search, 3));
+			}
+			else
+			{
+				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
+				$query->where('(a.name LIKE ' . $search . ' OR a.alias LIKE ' . $search . ')');
+			}
+		}
 
 		return $query;
 	}
