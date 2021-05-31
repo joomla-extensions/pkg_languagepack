@@ -193,6 +193,13 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
+		if ($languageTable->locked === true)
+		{
+			$this->setError(Text::_('COM_LANGUAGEPACK_LANGUAGE_LOCKED'));
+
+			return false;
+		}
+
 		// TODO: Should we try and move this to the allowSave method in the controller (it's complex because of the
 		//       dependency on loading the language table data first)
 		if (!in_array($languageTable->group_id, Factory::getUser()->getAuthorisedGroups()))
@@ -208,6 +215,13 @@ class LanguagepackModelNewpack extends AdminModel
 		if (!$appLoadResult)
 		{
 			$this->setError($applicationTable->getError());
+
+			return false;
+		}
+
+		if ($applicationTable->locked === true)
+		{
+			$this->setError(Text::_('COM_LANGUAGEPACK_LANGUAGE_LOCKED'));
 
 			return false;
 		}
@@ -308,7 +322,7 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
-		$data['release_name'] = $data['joomla_version'] . '.' . $data['language_pack_version'];
+		$data['release_name'] = $joomlaVersion . '.' . $releaseVersion;
 		$data['ars_release_id'] = $arsItemData['release_id'];
 		unset($data['joomla_version']);
 		unset($data['language_pack_version']);

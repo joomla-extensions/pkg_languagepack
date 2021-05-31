@@ -29,16 +29,18 @@ class LanguagepackModelApplications extends ListModel
 	protected function getListQuery()
 	{
 		$db = $this->getDbo();
+		$user = Factory::getUser();
 
 		// return $db->getQuery(true)
 		$query = $db->getQuery(true)
 			->select('a.*')
 			->select('count(DISTINCT(b.lang_code)) AS languages_count')
-			->leftJoin($db->quoteName('#__languagepack_languages', 'b') . ' ON ' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.application_id'))
+			->leftJoin($db->quoteName('#__languagepack_languages', 'b') .
+				' ON ' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.application_id')
+//				. (!$user->authorise('core.edit', 'com_languagepack') ? ' AND ' . $db->quoteName('b.state') .  ' = 1' : '')
+			)
 			->from($db->quoteName('#__languagepack_applications', 'a'))
 			->group($db->quoteName('a.id'));
-
-		$user = Factory::getUser();
 
 		if (!$user->authorise('core.edit', 'com_languagepack'))
 		{

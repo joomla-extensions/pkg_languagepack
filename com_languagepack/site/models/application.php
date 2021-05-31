@@ -55,6 +55,7 @@ class LanguagepackModelApplication extends ListModel
 
 		$query = $db->getQuery(true)
 			->select('a.*')
+			->select($db->quoteName('b.locked', 'application_lock'))
 			->from($db->quoteName('#__languagepack_languages', 'a'))
 			->rightJoin($db->quoteName('#__languagepack_applications', 'b') . ' ON ' . $db->quoteName('b.id') . ' = ' . $db->quoteName('a.application_id'))
 			->where($db->quoteName('a.application_id') . ' = ' . $this->getState('application_id'))

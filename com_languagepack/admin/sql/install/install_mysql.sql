@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `#__languagepack_releases` (
   -- int(11) because it references our users table. This is stupid and should be fixed in J4
   `maintainer_id` int(11) NOT NULL,
   `language_id` int(10) unsigned NOT NULL,
-  `release_name` VARCHAR(10) NOT NULL,
+  `release_name` VARCHAR(15) NOT NULL,
   `ars_release_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_languagepack_releases_maintainer_id` FOREIGN KEY (`maintainer_id`) REFERENCES `#__users` (`id`)  ON DELETE NO ACTION
