@@ -137,7 +137,7 @@ class LanguagepackViewExport extends HtmlView
 			$xmlLang              = $export->addChild('update');
 			$xmlLang->name        = $update['name'];
 			$xmlLang->description = $update['description'];
-			$xmlLang->element     = 'pkg_' . $update['element'];
+			$xmlLang->element     = $update['element'];
 			$xmlLang->type        = $update['type'];
 			$xmlLang->version     = $update['version'];
 
