@@ -155,7 +155,8 @@ class LanguagepackViewExport extends HtmlView
 				);
 			}
 
-			// add the hashes
+			// Add the hashes. Joomla treats each Download as being the same file but a different CDN. So we just
+			// assume there is one file and use the last file's hash in ARS.
 			$xmlLang->sha256 = $download['sha256'];
 			$xmlLang->sha384 = $download['sha384'];
 			$xmlLang->sha512 = $download['sha512'];
