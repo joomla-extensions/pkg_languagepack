@@ -177,7 +177,7 @@ class LanguagepackModelExport extends ListModel
 			{
 				$version = [
 					'name'        => $release->category->title, // not ideal
-					'description' => $release->description,
+					'description' => strip_tags($release->description),
 					'version'     => $release->version,
 					'element'     => 'pkg_' . $languageCode,
 					'type'        => 'package',
