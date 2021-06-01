@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Akeeba\Engine\Postproc\Connector\S3v4\Acl;
 use Akeeba\ReleaseSystem\Admin\Helper\AmazonS3;
 use Akeeba\ReleaseSystem\Site\Model\Categories;
 use FOF30\Container\Container;
@@ -384,9 +385,14 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 
 		$s3UploadPath = substr($categoriesModel->directory, strlen($prefix));
+		$requestHeaders = [
+			'Content-Disposition' => 'attachment; filename="' . $zipName . '"',
+		];
 
 		$s3 = AmazonS3::getInstance();
-		$success = $s3->putObject($fileUpload['tmp_name'], $s3UploadPath . '/' . $zipName);
+
+		// Default parameters for the putObject method in ARS. Aside from overriding the request headers.
+		$success = $s3->putObject($fileUpload['tmp_name'], $s3UploadPath . '/' . $zipName, false, $requestHeaders);
 
 		if (!$success)
 		{

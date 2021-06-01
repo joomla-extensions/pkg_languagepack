@@ -194,7 +194,7 @@ class LanguagepackModelExport extends ListModel
 
 					$downloadUrl = \JRoute::link(
 						'site',
-						'index.php?option=com_ars&view=Item&task=download&format=raw&id='
+						'index.php?option=com_ars&view=Item&task=download&id='
 						. $item->id . '&Itemid='
 						. $this->mapping[$cmsVersion]['menu_id']
 					);
