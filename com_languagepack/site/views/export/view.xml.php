@@ -153,22 +153,12 @@ class LanguagepackViewExport extends HtmlView
 				$xmlDownLoad->downloadurl->addAttribute(
 					'format', $download['format']
 				);
-				$xmlDownLoad->downloadurl->addAttribute(
-					'md5', $download['md5']
-				);
-				$xmlDownLoad->downloadurl->addAttribute(
-					'sha1', $download['sha1']
-				);
-				$xmlDownLoad->downloadurl->addAttribute(
-					'sha256', $download['sha256']
-				);
-				$xmlDownLoad->downloadurl->addAttribute(
-					'sha384', $download['sha384']
-				);
-				$xmlDownLoad->downloadurl->addAttribute(
-					'sha512', $download['sha512']
-				);
 			}
+
+			// add the hashes
+			$xmlLang->sha256 = $download['sha256'];
+			$xmlLang->sha384 = $download['sha384'];
+			$xmlLang->sha512 = $download['sha512'];
 
 			$xmlPlatform = $xmlLang->addChild('targetplatform');
 			$xmlPlatform->addAttribute('name', 'joomla');
