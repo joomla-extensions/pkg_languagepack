@@ -91,13 +91,17 @@ class LanguagepackModelExport extends ListModel
 		// we must have a CMS version
 		if (!$cmsVersion)
 		{
-			$this->setError(Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_REQUIRED'));
+			$this->setError(
+				Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_REQUIRED')
+			);
 
 			return false;
 		}
 		elseif (!isset($this->mapping[$cmsVersion]))
 		{
-			$this->setError(Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_NOT_FOUND'));
+			$this->setError(
+				Text::_('COM_LANGUAGE_PACK_EXPORT_CMS_VERSION_NOT_FOUND')
+			);
 
 			return false;
 		}
@@ -177,7 +181,7 @@ class LanguagepackModelExport extends ListModel
 			{
 				$version = [
 					'name'        => $release->category->title, // not ideal
-					'description' => $release->description,
+					'description' => strip_tags($release->description),
 					'version'     => $release->version,
 					'element'     => 'pkg_' . $languageCode,
 					'type'        => 'package',
@@ -290,6 +294,7 @@ class LanguagepackModelExport extends ListModel
 			$result = [
 				'name'          => $item->name,
 				'languageCode'  => $item->lang_code,
+				'element'       => 'pkg_' . $item->lang_code,
 				'latestVersion' => $categoryLatest[$item->ars_category]['version'],
 				'url'           => 'https://update.joomla.org/language/'
 					. $this->mapping[$cmsVersion]['folder'] . '/'
