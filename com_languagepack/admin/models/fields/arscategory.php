@@ -53,7 +53,8 @@ class LanguagepackFormFieldArscategory extends JFormFieldList
 
 			$query = $db->getQuery(true)
 				->select($db->quoteName(array('id', 'title'), array('value', 'text')))
-				->from($db->quoteName('#__ars_categories'));
+				->from($db->quoteName('#__ars_categories'))
+				->order('title ASC');
 
 			$db->setQuery($query);
 
