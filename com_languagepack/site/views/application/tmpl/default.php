@@ -95,7 +95,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 						<?php if (!empty($language->coordinator_forum_id)) : ?>
 							<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=' . $language->coordinator_forum_id . '">' . $language->coordinator . '</a>'); ?>
 						<?php else: ?>
-							<?php echo $language->coordinator; ?>
+							<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', $language->coordinator); ?>
 						<?php endif; ?>
 					<br>
 					<?php if (!empty($language->coordinator_email)) : ?>
