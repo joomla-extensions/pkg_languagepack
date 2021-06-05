@@ -184,7 +184,7 @@ class LanguagepackModelNewpack extends AdminModel
 		// Ensure the maintainer ID is the current user id
 		$data['maintainer_id'] = Factory::getUser()->id;
 
-		$languageTable = $this->getTable('Language');
+		$languageTable  = $this->getTable('Language');
 		$langLoadResult = $languageTable->load($data['language_id']);
 
 		if (!$langLoadResult)
@@ -211,7 +211,7 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 
 		$applicationTable = $this->getTable('Application');
-		$appLoadResult = $applicationTable->load($languageTable->application_id);
+		$appLoadResult    = $applicationTable->load($languageTable->application_id);
 
 		if (!$appLoadResult)
 		{
@@ -228,12 +228,12 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 
 		// Assemble data for generating the ARS release and the ZIP
-		$joomlaVersion = $data['joomla_version'];
+		$joomlaVersion  = $data['joomla_version'];
 		$releaseVersion = $data['language_pack_version'];
-		$languageName = $languageTable->name;
-		$languageCode = $languageTable->lang_code;
-		$zipName      = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
-		$dateNow = new Date;
+		$languageName   = $languageTable->name;
+		$languageCode   = $languageTable->lang_code;
+		$zipName        = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
+		$dateNow        = new Date;
 
 		$arsContainer = Container::getInstance('com_ars');
 
@@ -265,14 +265,24 @@ class LanguagepackModelNewpack extends AdminModel
 			'version'     => $completeVersion,
 			'alias'       => str_replace('.', '-', $completeVersion),
 			'maturity'    => 'stable',
-			'description' => '<p>This is the ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion . '</p>',
+			'description' => '<p>This is the ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion,
 			'created'     => $dateNow->toSql(),
 			'access'      => '1',
 		];
 
+		// TODO: Check if this is a string or integer in the data and delete one of these.
+		if ($releaseVersion === 1 || $releaseVersion === '1')
+		{
+			$arsReleaseData['description'] .= '</p>';
+		}
+		else
+		{
+			$arsReleaseData['description'] .= ' (v' . $releaseVersion . ')</p>';
+		}
+
 		// Build Item Data (omitting the release ID which will be added after creation)
 		$arsItemData = [
-			'title'        => 'Joomla! ' . $joomlaVersion . ' ' . $languageName . ' ' . $languageCode . ' Language Pack',
+			'title'        => 'Joomla! ' . $joomlaVersion . ' ' . $languageName . ' ' . $languageCode . ' Language Pack (v' . $releaseVersion . ')',
 			'description'  => '<p>This is the full ' . $languageName . ' Language Pack for Joomla! ' . $joomlaVersion . '</p>',
 			'type'         => 'file',
 			'filename'     => $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip',
@@ -289,7 +299,9 @@ class LanguagepackModelNewpack extends AdminModel
 			return false;
 		}
 
-		// Fail saving the item if it already exists in ARS
+		// Fail saving the item if it already exists in ARS. Whilst it would be good to dual load this with the Release
+		// ID to reduce the risk of duplicate titles, we choose to do it here so we don't ever have to roll back the
+		// item in case the release is created and item is a duplicate.
 		if ($itemsModel->load(['title' => $arsItemData['title']]))
 		{
 			$this->setError(Text::_('COM_LANGUAGEPACK_ARS_RELEASE_ITEM_ALREADY_EXISTS'));
