@@ -9,9 +9,24 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+
+HTMLHelper::_('behavior.formvalidator');
+HTMLHelper::_('behavior.keepalive');
+
+Factory::getDocument()->addScriptDeclaration('
+	Joomla.submitbutton = function(task)
+	{
+		if (task == "language.cancel" || document.formvalidator.isValid(document.getElementById("adminForm")))
+		{
+			Joomla.submitform(task, document.getElementById("item-form"));
+		}
+	};
+');
+
 ?>
 <form action="<?php echo Route::_('index.php?option=com_languagepack&layout=edit&id=' . (int) $this->item->id); ?>"
       method="post" name="adminForm" id="adminForm">

@@ -71,7 +71,7 @@
 		/>
 		<field
 			name="coordinator_email"
-			type="text"
+			type="email"
 			label="COM_LANGUAGEPACK_LANGUAGE_COORDINATOR_EMAIL_LABEL"
 			size="40"
 			class="inputbox"
