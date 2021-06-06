@@ -165,6 +165,7 @@ class LanguagepackModelNewpack extends AdminModel
 			$uploadField->addAttribute('type', 'file');
 			$uploadField->addAttribute('label', 'COM_LANGUAGEPACK_RELEASE_UPLOAD_PACK');
 			$uploadField->addAttribute('accept', 'application/zip');
+			$uploadField->addAttribute('required', true);
 
 			$form->load($addform, false);
 		}
