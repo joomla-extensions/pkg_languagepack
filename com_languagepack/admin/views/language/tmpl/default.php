@@ -22,7 +22,7 @@ Factory::getDocument()->addScriptDeclaration('
 	{
 		if (task == "language.cancel" || document.formvalidator.isValid(document.getElementById("adminForm")))
 		{
-			Joomla.submitform(task, document.getElementById("item-form"));
+			Joomla.submitform(task);
 		}
 	};
 ');
