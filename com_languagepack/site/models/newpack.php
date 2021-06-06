@@ -270,8 +270,7 @@ class LanguagepackModelNewpack extends AdminModel
 			'access'      => '1',
 		];
 
-		// TODO: Check if this is a string or integer in the data and delete one of these.
-		if ($releaseVersion === 1 || $releaseVersion === '1')
+		if ($releaseVersion === '1')
 		{
 			$arsReleaseData['description'] .= '</p>';
 		}
