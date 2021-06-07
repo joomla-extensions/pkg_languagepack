@@ -1,0 +1,24 @@
+# Project Public Identifier: jed-checker-extension
+project_id: 104
+api_token_env: CROWDIN_PERSONAL_TOKEN
+base_path: 
+base_url: "https://joomla.crowdin.com"
+
+preserve_hierarchy: true
+
+files:
+  - source: /pkg_languagepack/com_languagepack/site/language/en-GB/en-GB.com_languagepack.ini
+    dest: 'LanguagePack/site/en-GB.com_languagepack.ini'
+    translation: /pkg_languagepack/com_languagepack/site/language/%locale%/%locale%.com_languagepack.ini
+    update_option: update_as_unapproved
+    type: joomla
+  - source: /pkg_languagepack/com_languagepack/admin/language/en-GB/en-GB.com_languagepack.ini
+    dest: 'LanguagePack/administrator/en-GB.com_languagepack.ini'
+    translation: /pkg_languagepack/com_languagepack/admin/language/%locale%/%locale%.com_languagepack.ini
+    update_option: update_as_unapproved
+    type: joomla
+  - source: /pkg_languagepack/com_languagepack/admin/language/en-GB/en-GB.com_languagepack.sys.ini
+    dest: 'LanguagePack/administrator/en-GB.com_languagepack.sys.ini'
+    translation: /pkg_languagepack/com_languagepack/admin/language/%locale%/%locale%.com_languagepack.sys.ini
+    update_option: update_as_unapproved
+    type: joomla
