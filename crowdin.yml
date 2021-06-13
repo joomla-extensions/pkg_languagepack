@@ -12,13 +12,16 @@ files:
     translation: /com_languagepack/site/language/%locale%/%locale%.com_languagepack.ini
     update_option: update_as_unapproved
     type: joomla
+    update_option: update_as_unapproved
   - source: /com_languagepack/admin/language/en-GB/en-GB.com_languagepack.ini
     dest: 'LanguagePack/administrator/en-GB.com_languagepack.ini'
     translation: /com_languagepack/admin/language/%locale%/%locale%.com_languagepack.ini
     update_option: update_as_unapproved
     type: joomla
+    update_option: update_as_unapproved
   - source: /com_languagepack/admin/language/en-GB/en-GB.com_languagepack.sys.ini
     dest: 'LanguagePack/administrator/en-GB.com_languagepack.sys.ini'
     translation: /com_languagepack/admin/language/%locale%/%locale%.com_languagepack.sys.ini
     update_option: update_as_unapproved
     type: joomla
+    update_option: update_as_unapproved
