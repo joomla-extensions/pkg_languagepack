@@ -229,8 +229,8 @@ class LanguagepackModelNewpack extends AdminModel
 		}
 
 		// Assemble data for generating the ARS release and the ZIP
-		$joomlaVersion  = $data['joomla_version'];
-		$releaseVersion = $data['language_pack_version'];
+		$joomlaVersion  = (string) trim($data['joomla_version']);
+		$releaseVersion = (int) trim($data['language_pack_version']);
 		$languageName   = $languageTable->name;
 		$languageCode   = $languageTable->lang_code;
 		$zipName        = $languageCode . '_joomla_lang_full_' . $joomlaVersion . 'v' . $releaseVersion . '.zip';
