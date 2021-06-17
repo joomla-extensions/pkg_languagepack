@@ -15,7 +15,9 @@ use Joomla\CMS\Form\FormRule;
 use Joomla\Registry\Registry;
 
 /**
- * Form Rule (Validversion) class for the Joomla Platform.
+ * Joomla Version validation
+ *
+ * @since 1.0.3
  */
 class LanguagepackFormRuleVersion extends FormRule
 {
