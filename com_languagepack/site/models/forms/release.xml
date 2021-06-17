@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fieldset>
+    <fieldset addrulepath="components/com_languagepack/models/rules">
         <field
             name="id"
             type="hidden"
@@ -12,6 +12,7 @@
             type="text"
             required="true"
             label="COM_LANGUAGEPACK_RELEASE_JOOMLA_VERSION_LABEL"
+            validate="languagepack.version"
         />
         <field
             name="language_pack_version"
