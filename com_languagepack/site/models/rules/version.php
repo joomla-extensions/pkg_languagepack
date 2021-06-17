@@ -17,7 +17,7 @@ use Joomla\Registry\Registry;
 /**
  * Form Rule (Validversion) class for the Joomla Platform.
  */
-class LanguagepackRuleValidversion extends FormRule
+class LanguagepackFormRuleVersion extends FormRule
 {
 	/**
 	 * Method to test that an valid version value was added.
