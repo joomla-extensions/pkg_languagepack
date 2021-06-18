@@ -68,7 +68,7 @@ class LanguagepackFormRuleVersion extends FormRule
 		 * 4.0.0-beta1
 		 * 3.9.29
 		 */
-		if (preg_match('/^((\d+).(\d+)(.(\d+))(-rc[0-9]{1,3})?(-beta[0-9]{1,3})?(-alpha[0-9]{1,3})?)$/', $value))
+		if (preg_match('/^((\d+)\.(\d+)\.(\d+)(-rc[0-9]{1,3})?(-beta[0-9]{1,3})?(-alpha[0-9]{1,3})?)$/', $value))
 		{
 			return true;
 		}
