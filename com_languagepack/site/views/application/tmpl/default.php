@@ -99,7 +99,7 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 						<?php endif; ?>
 					<br>
 					<?php if (!empty($language->coordinator_email)) : ?>
-						<?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', $language->coordinator_email); ?>
+						<?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', JHtml::_('email.cloak', $language->coordinator_email)); ?>
 					<?php endif; ?>
 					<br>
 					<?php echo !empty($language->website) ? ' ' . Text::sprintf('COM_LANGUAGE_PACK_CONTACT_WEBSITE', '<a href="' . $language->website . '">' . $language->website . '</a>') . ' ' : ''; ?>
