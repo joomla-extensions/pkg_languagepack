@@ -92,12 +92,14 @@ $languageCode = $languages[ $lang->getTag() ]->sef;
 				<div class="language-information">
 					<p><?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_LANGUAGE', $language->name, $language->lang_code); ?>
 					<br>
+					<?php if (!empty($language->coordinator)): ?>	
 						<?php if (!empty($language->coordinator_forum_id)) : ?>
 							<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', '<a href="https://forum.joomla.org/memberlist.php?mode=viewprofile&u=' . $language->coordinator_forum_id . '">' . $language->coordinator . '</a>'); ?>
 						<?php else: ?>
 							<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_TEAM_COORDINATOR', $language->coordinator); ?>
 						<?php endif; ?>
 					<br>
+					<?php endif; ?>
 					<?php if (!empty($language->coordinator_email)) : ?>
 						<?php echo Text::sprintf('COM_LANGUAGE_PACK_CONTACT_EMAIL', JHtml::_('email.cloak', $language->coordinator_email)); ?>
 					<?php endif; ?>
