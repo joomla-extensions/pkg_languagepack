@@ -94,8 +94,20 @@ class LanguagepackControllerRelease extends FormController
 
 		// Setup redirect info.
 		$langId = $this->input->getInt('langid');
+		$filter = InputFilter::getInstance();
 
-		if ($langId)
+		// If we have got here from saving an item then the langid is in the form data
+		if (is_null($langId))
+		{
+			$formData = $this->input->get('jform', [], 'array');
+
+			if ($formData && array_key_exists('language_id', $formData))
+			{
+				$filter->clean($formData['language_id'], 'INT');
+			}
+		}
+
+		if (!is_null($langId))
 		{
 			$append .= '&langid=' . $langId;
 		}
