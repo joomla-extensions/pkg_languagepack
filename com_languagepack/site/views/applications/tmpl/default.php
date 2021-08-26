@@ -31,12 +31,15 @@ HTMLHelper::_('stylesheet', 'com_languagepack/com_lp_front.css', array('version'
 		<div>
 			<div>
 				<h2>
-					<a href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
-						<?php echo Text::_($application->name); ?>
-					</a>
+					<?php echo Text::_($application->name); ?>
 				</h2>
 				<div>
 					<?php echo Text::sprintf($application->description, $application->languages_count); ?>
+				</div>
+				<div>
+					<a class="btn btn-primary" href="<?php echo Route::_('index.php?option=com_languagepack&view=application&application_id=' . $application->id); ?>">
+						<?php echo Text::sprintf('COM_LANGUAGE_PACK_APPLICATION_VIEW_ALL', Text::_($application->name)); ?>
+					</a>
 				</div>
 			</div>
 		</div>
