@@ -130,28 +130,28 @@ class LanguagepackModelApplication extends ListModel
 				],
 			];
 		}
-		elseif ($this->getState('application_id') === 3)
+		elseif ($this->getState('application_id') === 5)
 		{
 			return [
 				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_0_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_0_BODY'),
+					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_0_TITLE'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_-_EXTRA_INFO_0_BODY'),
 				],
 				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_1_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_1_BODY'),
+					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_1_TITLE'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_1_BODY'),
 				],
 				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_2_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_2_BODY'),
+					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_2_TITLE'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_2_BODY'),
 				],
 				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_3_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_3_BODY'),
+					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_3_TITLE'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_3_BODY'),
 				],
 				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_4_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_2_5_EXTRA_INFO_4_BODY'),
+					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_4_TITLE'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_4_BODY'),
 				],
 			];
 		}
