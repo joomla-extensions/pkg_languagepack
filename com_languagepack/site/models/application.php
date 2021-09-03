@@ -135,7 +135,7 @@ class LanguagepackModelApplication extends ListModel
 			return [
 				[
 					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_0_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_-_EXTRA_INFO_0_BODY'),
+					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_0_BODY'),
 				],
 				[
 					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_1_TITLE'),
@@ -148,11 +148,7 @@ class LanguagepackModelApplication extends ListModel
 				[
 					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_3_TITLE'),
 					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_3_BODY'),
-				],
-				[
-					'title' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_4_TITLE'),
-					'body' => Text::_('COM_LANGUAGE_PACK_JOOMLA_VERSION_4_0_EXTRA_INFO_4_BODY'),
-				],
+				]
 			];
 		}
 		else
