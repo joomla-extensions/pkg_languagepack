@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="package" version="3.9" method="upgrade">
+<extension type="package" method="upgrade">
 	<name>pkg_languagepack</name>
     <author>Joomla! Project</author>
-    <creationDate>April 2020</creationDate>
+    <creationDate>April 2025</creationDate>
     <copyright>(C) 2020 Open Source Matters. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<packagename>languagepack</packagename>
-	<version>1.0.3</version>
+	<version>1.0.5</version>
 	<url>http://www.joomla.org/</url>
 	<packager>Joomla! Project</packager>
 	<packagerurl>http://www.joomla.org/</packagerurl>
