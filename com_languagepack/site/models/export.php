@@ -74,9 +74,16 @@ class LanguagepackModelExport extends ListModel
 				'menu_id'        => 1198,
 				'filename'       => 'translationlist_5',
 				'folder'         => 'details5',
-				'target'         => '5.[0123]'
-			],	
-		];
+				'target'         => '5.[01234]'
+			],
+            60 => [
+                'application_id' => 7,
+                'menu_id'        => 1239,
+                'filename'       => 'translationlist_6',
+                'folder'         => 'details6',
+                'target'         => '6.[0]'
+            ],
+        ];
 
 	/**
 	 * Create the export document for a language xml request.
