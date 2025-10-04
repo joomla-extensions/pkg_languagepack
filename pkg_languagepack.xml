@@ -2,7 +2,7 @@
 <extension type="package" method="upgrade">
 	<name>pkg_languagepack</name>
     <author>Joomla! Project</author>
-    <creationDate>September 2025</creationDate>
+    <creationDate>October 2025</creationDate>
     <copyright>(C) 2020 Open Source Matters. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<packagename>languagepack</packagename>
